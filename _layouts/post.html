@@ -1,173 +1,37 @@
 ---
 layout: default
-id: post
 ---
 
-{% if page.reproduce %}
-<script>
-    const isReproduce = true;
-</script>
-{% else %}
-<script>
-    const isReproduce = false;
-</script>
-{% endif %}
+<!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
 {% include intro-header.html type='post' %}
 
-{% if site.disqus_username %}
-<link rel="stylesheet" href="/css/iDisqus.min.css" />
-<script src="/js/iDisqus.min.js"></script>
-{% endif %}
-<style>
-    .post-content:not(.staticrypt-form) > p:first-of-type:first-letter {
-        font-family: 'Noto Serif SC','Lora','Times New Roman',serif;
-        font-weight: bold;
-        font-size: 48px;
-        line-height: 1;
-        float: left;
-        padding-right: 7px;
-        color: #0085a1;
-    }
-</style>
-
 <!-- Post Content -->
-<article xmlns:display="http://www.w3.org/1999/xhtml">
+<article>
     <div class="container">
         <div class="row">
-            <div class="
-                col-lg-1 col-lg-offset-0
-                visible-lg-block ">
-                <div class="side-progress hidden animated content-fadeInUp">
-                    <div class="progress vertical" onclick="progressBarClicked(event)">
-                        <div role="progressbar" style="height: 100%;" id="progressid"
-                             class="progress-bar progress-bar-secondary"></div>
-                    </div>
-                    <p style="font-size: 10px; margin: 0 0 0 0;" id="progress-num">100%</p>
-                </div>
-            </div>
 
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
+                col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
-                post-container animated content-fadeInUp">
+                post-container">
 
                 <!-- Multi-Lingual -->
-                {%- if page.multilingual -%}
-                <!-- Language Selector -->
-                    {%- include multilingual-sel.html -%}
-                {%- endif -%}
+                {% if page.multilingual %}
+                    {% include multilingual-sel.html %}
+                {% endif %}
 
-                {%- if page.modify_date -%}
-                {%- assign last_modify_date = page.modify_date | date: '%s' -%}
-                {%- else -%}
-                {%- assign last_modify_date = page.date | date: '%s' -%}
-                {%- endif -%}
-                <div class="reproduce-block hidden last-modify-block">
-                    <p><strong>警告 Warning：</strong></p>
-                    <p>本文最后更新于<strong class="last-modify"></strong>天前，文章所述情况可能已经有所改变!</p>
-                    <p>This article was last modified <strong class="last-modify"></strong> days ago, contents described in the article may have changed!</p>
-                </div>
-                <script>
-                    "use strict";
-                    let date_diff = Math.round((Math.round(new Date().getTime() / 1000) - {{ last_modify_date }}) / 86400);
-                    if (date_diff > 90) {
-                        document.querySelectorAll('.last-modify-block .last-modify')[0].innerHTML = date_diff.toString();
-                        document.querySelectorAll('.last-modify-block .last-modify')[1].innerHTML = date_diff.toString();
-                        document.querySelector('.last-modify-block').classList.remove('hidden');
-                    }
-                </script>
-
-                {%- if page.reproduce -%}
-                <div class="reproduce-block">
-                    <p><strong>警告 Warning：</strong></p>
-                    <p>本文由博客站长转载但<strong>不一定</strong>代表站长观点，请阅读时明辨是非!</p>
-                    <p>This article is reproduced by the webmaster but may <strong>NOT</strong> represent the view of the webmaster, please distinguish between right and wrong when reading!</p>
-                    {% if page.reproduce_auther %}
-                    <p><strong>原文作者 Auther：</strong>{{ page.reproduce_auther }}</p>
-                    {% endif %}
-                    {% if page.reproduce_link %}
-                    <p><strong>原文链接 Link：</strong> <a rel="nofollow" href="{{ page.reproduce_link }}" aria-label="原文链接 Link">{{ page.reproduce_link }}</a></p>
-                    {% endif %}
-                </div>
-                {%- endif -%}
-
-                {%- if page.catalog -%}
-                <div class="mobile-toc hidden">
-                    <div class="mobile-catalog">
-                        <strong>
-                            <a class="mobile-catalog-toggle" href="#" style='text-decoration:none;' aria-label="Catalog">CATALOG</a>
-                        </strong>
-                        <ul class="mobile-catalog-body"></ul>
-                    </div>
-                </div>
-                {%- endif -%}
-
-                <div class="post-content">
-                    {%- if page.password -%}
-                    <!-- password protection -->
-                    <div class="staticrypt-form">
-                        <div class="staticrypt-instructions">
-                            <p class="staticrypt-title">受保护的文章 | Protected Post</p>
-                            <p>输入正确密钥以解锁文章 | Enter passphrase to unlock the page</p>
-                        </div>
-
-                        <hr>
-
-                        <form id="staticrypt-form" action="#" method="post">
-                            <input id="staticrypt-password" type="password" name="password" placeholder="密钥 | Passphrase"/>
-
-                            <input type="submit" class="staticrypt-decrypt-button" value="解密 | DECRYPT"/>
-                        </form>
-                    </div>
-                    {%- else -%}
-                    {{ content }}
-                    {%- endif -%}
-                </div>
+				{{ content }}
 
                 <hr style="visibility: hidden;">
-
-                <centerquote>
-                    {% if page.reproduce %}
-                    {% else %}
-                    <div class="copyright-block">
-                        <p><strong>本文作者 Auther：</strong><a href="/about.html" aria-label="本文作者 Auther">Soptq</a></p>
-                        <p><strong>本文链接 Link：</strong> <a href="https://soptq.me{{ page.url | replace: '//', '/' }}" aria-label="本文链接 Link">https://soptq.me{{ page.url | replace: '//', '/' }}</a>
-                            <i class="fa fa-qrcode" style="padding-left: 20px; cursor: pointer" aria-hidden="true"
-                               onclick="showqr('https://soptq.me{{ page.url | replace: '//', '/' }}')"></i></p>
-                        <p><strong>版权声明 Copyright：</strong> 本博客所有文章除特别声明外，均采用 <a
-                                href="https://creativecommons.org/licenses/by-nc-sa/4.0/" aria-label="CC BY-NC-SA 4.0">CC BY-NC-SA 4.0</a>
-                            许可协议。转载请注明出处！ All articles in this blog use the <a
-                                    href="https://creativecommons.org/licenses/by-nc-sa/4.0/" aria-label="CC BY-NC-SA 4.0">CC BY-NC-SA 4.0</a>
-                            license agreement unless otherwise stated. Please indicate the source!</p>
-                    </div>
-                    {% endif %}
-                    <br>
-                    <div class="text-center">
-                        <p>发现有
-                            <strong>
-                                错别字
-                            </strong>
-                            ？请麻烦您点击
-                            <strong>
-                                <a href="https://github.com/Soptq/Soptq.github.io/issues">
-                                    <i class="fa fa-link" aria-hidden="true" aria-label="报告错别字"></i>这里
-                                </a>
-                            </strong>
-                            汇报。谢谢您！
-                        </p>
-                    </div>
-                    <br>
-                </centerquote>
-
-                <br>
-
                 <ul class="pager">
                     {% if page.previous.url %}
                     <li class="previous">
-                        <a rel="prefetch" aria-label="Previous Post" href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
                         Previous<br>
                         <span>{{page.previous.title}}</span>
                         </a>
@@ -175,38 +39,48 @@ id: post
                     {% endif %}
                     {% if page.next.url %}
                     <li class="next">
-                        <a rel="prefetch" aria-label="Next Post" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
+                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
                         Next<br>
                         <span>{{page.next.title}}</span>
                         </a>
                     </li>
                     {% endif %}
                 </ul>
-
                 <hr style="visibility: hidden;">
 
                 {% if site.disqus_username %}
-                <div id="comment"></div>
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 {% endif %}
-            </div>
 
-            <!-- Side Catalog Container -->
-            {% if page.catalog %}
+                {% if site.netease_comment %}
+                <!-- 网易云跟帖 评论框 start -->
+                <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+                <!-- 网易云跟帖 评论框 end -->
+                {% endif %}
+            </div>  
+
+    <!-- Side Catalog Container -->
+        {% if page.catalog %}
             <div class="
                 col-lg-2 col-lg-offset-0
                 visible-lg-block
                 sidebar-container
-                catalog-container hidden">
-                <div class="side-catalog animated content-fadeInUp">
+                catalog-container">
+                <div class="side-catalog">
                     <hr class="hidden-sm hidden-xs">
                     <h5>
-                        <a class="catalog-toggle" href="#" aria-label="Catalog">CATALOG</a>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
                     </h5>
                     <ul class="catalog-body"></ul>
                 </div>
             </div>
-            {% endif %}
-            <!-- Sidebar Container -->
+        {% endif %}
+
+    <!-- Sidebar Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
@@ -218,202 +92,47 @@ id: post
                 <!-- Friends Blog -->
                 {% include friends.html %}
             </div>
-
         </div>
     </div>
 </article>
 
-
-
- <!-- add support for mathjax by voleking -->
+<!-- add support for mathjax by voleking-->
 {% if page.mathjax %}
   {% include mathjax_support.html %}
 {% endif %}
 
-<!-- add support for mermaid -->
-{% if page.mermaid %}
-  {% include mermaid_support.html %}
+{% if site.netease_comment %}
+<!-- 网易云跟帖JS代码 start -->
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "",
+    productKey: "de25fc98a6fe48b3bc8a7ae765da99a0",
+    target: "cloud-tie-wrapper"
+  };
+  var yunManualLoad = true;
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
+<!-- 网易云跟帖JS代码 end -->
 {% endif %}
 
-<script>
-    function initProgressBar() {
-        "use strict";
-        let scheduledAnimationFrame = false,
-            act = 0,
-            per = 1;
-        const progressbar = document.getElementById('progressid'),
-            progress_num = document.getElementById('progress-num');
-
-        function updateProgress() {
-            act = (document.documentElement.scrollTop || document.body.scrollTop) / (document.body.offsetHeight - window.innerHeight);
-            per = 1 - act;
-            progressbar.style.height = Math.round(per * 100) + '%';
-            progress_num.innerText = Math.round(act * 100) + '%';
-            scheduledAnimationFrame = false;
-        }
-
-        window.addEventListener('scroll', function() {
-            if (scheduledAnimationFrame){
-                return;
-            }
-            scheduledAnimationFrame = true;
-            requestAnimationFrame(updateProgress);
-        }, false);
-
-        window.progressBarClicked = function (event) {
-            let top, target, parent, offsety;
-            target = document.getElementsByClassName("progress")[0];
-            parent = document.getElementsByClassName("side-progress")[0];
-            top=getY(target);
-            if (parent.classList.contains('fixed')) {
-                offsety = event.clientY - top;
-            }else {
-                offsety = event.clientY - top+ (document.documentElement.scrollTop || document.body.scrollTop);
-            }
-            offsety = (offsety / target.offsetHeight) * (document.body.offsetHeight - window.innerHeight);
-            scrollToY(offsety, 500, 'easeInOutQuint');
-            updateProgress();
-        }
-    }
-</script>
-
-{% if page.password %}
-<script src="//cdn.jsdelivr.net/npm/crypto-js@3.1.9-1/crypto-js.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>
-
-<style>
-    .hljs{display:block;overflow-x:auto;padding:.5em;color:#abb2bf;background:#282c34}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-keyword,.hljs-formula{color:#c678dd}.hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta-string{color:#98c379}.hljs-built_in,.hljs-class .hljs-title{color:#e6c07b}.hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number{color:#d19a66}.hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title{color:#61aeee}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}.hljs-link{text-decoration:underline}pre{background-color:#282c34;border-color:#282c34}.hljs-ln .hljs-ln-line{white-space:pre;font-size:14px;padding-top:2px;padding-bottom:2px}.hljs-ln-numbers{color:#555;vertical-align:top;padding-left:14px!important;text-align:right}.hljs-ln-code{padding-left:28px!important}
-</style>
-
-{% assign source = page.content | strip_html | rstrip %}
-
-<!-- password protection -->
-
-<script>
-    var input = document.getElementById("staticrypt-password");
-
-    function resetborder() {
-        if (theme_value === "dark"){
-            input.style.border = "2px solid #363636";
-        } else {
-            input.style.border = "2px solid #f2f2f2";
-        }
-    }
-
-    (function(){
-        input.oninput = resetborder;
-        document.getElementById('staticrypt-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            let passphrase = document.getElementById('staticrypt-password').value,
-                encryptedMsg = "{{ source }}",
-                encryptedHMAC = encryptedMsg.substring(0, 64),
-                encryptedHTML = encryptedMsg.substring(64),
-                decryptedHMAC = CryptoJS.HmacSHA256(encryptedHTML, CryptoJS.SHA256(passphrase).toString()).toString();
-            if (decryptedHMAC !== encryptedHMAC) {
-                input.style.border = "2px solid #ed1c24";
-                createSnackbar({
-                    message: 'Bad Passphrase',
-                    actionText:"ok",
-                    duration: 3000,
-                    mode: 'error'
-                });
-                return;
-            }
-            //back to top
-            scrollToY(0, 500, 'easeInOutQuint');
-            createSnackbar({
-                message: 'Access Granted',
-                actionText:"ok",
-                duration: 3000,
-                mode: 'success'
-            });
-            // decrypt
-            let plainHTML = CryptoJS.AES.decrypt(encryptedHTML, passphrase).toString(CryptoJS.enc.Utf8);
-
-            setTimeout(function () {
-                document.getElementsByClassName("post-content")[0].innerHTML = plainHTML;
-                document.getElementsByClassName("catalog-container")[0].classList.toggle('hidden');
-                document.getElementsByClassName("mobile-toc")[0].classList.toggle('hidden');
-                document.getElementsByClassName("side-progress")[0].classList.toggle('hidden');
-                // generate catelog
-                {% if page.catalog %}
-                generateCatalog(".catalog-body");
-                generateCatalog(".mobile-catalog-body");
-                async("{{ '/js/jquery.nav.js' | prepend: site.baseurl }}", function () {
-                    $('.catalog-body, .mobile-catalog-body').onePageNav({
-                        currentClass: "active",
-                        changeHash: !1,
-                        easing: "swing",
-                        filter: "",
-                        scrollSpeed: 700,
-                        scrollOffset: 0,
-                        scrollThreshold: .2,
-                        begin: null,
-                        end: null,
-                        scrollChange: null,
-                        padding: 80
-                    });
-                });
-                {% endif %}
-                // recall mathjax to render
-                {% if page.mathjax %}
-                if(typeof MathJax !== 'undefined') {
-                    try {
-                        MathJax.Hub.Queue(
-                            ['resetEquationNumbers', MathJax.InputJax.TeX, ],
-                            ['PreProcess', MathJax.Hub, ],
-                            ['Reprocess', MathJax.Hub, ]
-                        );
-                    } catch (e) {
-                        console.log('Can\'t render with MathJax');
-                    }
-                }
-                {% endif %}
-                // recall mermaid to render
-                {% if page.mermaid %}
-                init_mermaid();
-                {% endif %}
-                initProgressBar()
-                {% if site.anchorjs %}
-                anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-                {% endif %}
-
-                hljs.initHighlighting();
-                hljs.initLineNumbersOnLoad();
-            }, 700);
-        });
-    })();
-</script>
-{% else %}
-<script>
-    {% if page.catalog %}
-    document.getElementsByClassName("catalog-container")[0].classList.toggle('hidden');
-    document.getElementsByClassName("mobile-toc")[0].classList.toggle('hidden');
-    {% endif %}
-    document.getElementsByClassName("side-progress")[0].classList.toggle('hidden');
-    {% if page.mermaid %}
-    init_mermaid();
-    {% endif %}
-    initProgressBar()
-</script>
-{% endif %}
 
 {% if site.disqus_username %}
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "{{site.disqus_username}}";
+    var disqus_identifier = "{{page.id}}";
+    var disqus_url = "{{site.url}}{{page.url}}";
 
-<script>
-    var disq = new iDisqus('comment', {
-        forum: 'soptlog',
-        api: 'https://api.soptq.me/disqus/api',
-        site: 'https://soptq.me',
-        identifier: window.location.href.split('?')[0],
-        url: window.location.href.split('?')[0],
-        mode: 1,
-        timeout: 3000,
-        init: true,
-        emojiPreview: true
-    });
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
+<!-- disqus 公共JS代码 end -->
 {% endif %}
 
 
@@ -431,11 +150,11 @@ id: post
 </script>
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("//cdn.jsdelivr.net/npm/anchor-js@4.2.0/anchor.min.js",function(){
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
         anchors.options = {
-          visible: 'always',
+          visible: 'hover',
           placement: 'right',
-          icon: '#'
+          // icon: '#'
         };
         anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
     })
@@ -452,21 +171,3 @@ id: post
     }
 </style>
 {% endif %}
-
-<script>
-    function getY(obj){
-        var parObj=obj;
-        var top=obj.offsetTop;
-        while(parObj = parObj.offsetParent){
-            top+=parObj.offsetTop;
-        }
-        return top;
-    }
-    function showqr(url) {
-        if (localStorage.getItem("theme") === "daily"){
-            $.fancybox.open('<img alt="" src="http://qr.liantu.com/api.php?w=400&bg=ffffff&fg=000000&text=' + url + '" style=" background-color: ghostwhite ;width: 200px;height: 200px;"/>');
-        } else {
-            $.fancybox.open('<img alt="" src="http://qr.liantu.com/api.php?w=400&bg=282b2e&fg=d0cec8&text=' + url + '" style=" background-color: #363636 ;width: 200px;height: 200px;"/>');
-        }
-    }
-</script>

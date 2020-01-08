@@ -1,63 +1,14 @@
 {% comment %}
     @param {string} type - 'page' | 'post' | 'keynote'
-    @param {boolean} pall
     @param {boolean} short
 {% endcomment %}
-
-{% if include.type == 'demo' %}
-<style type="text/css">
-    header.intro-header{
-        position: relative;
-        background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
-    }
-
-    {% if page.header-mask %}
-    header.intro-header .header-mask{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-    background: rgba(0,0,0, {{ page.header-mask }});
-    }
-    {% endif %}
-</style>
-<header class="intro-header style-text" >
-    <div class="header-mask"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>Demonstration</h1>
-                    <h2 class="subheading">{{ page.projectTitle }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-{% endif %}
-
-
 
 {% if include.type == 'post' %}
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-color: #2e3033;
-    }
-
-    header.intro-header .wrap{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: no-repeat center center;
-        background-color: transparent;
-        background-attachment: scroll;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-        margin-bottom: 0px;
-        overflow: hidden;
         background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}');
+        background: {{ page.header-bg-css }};
     }
 
     {% if page.header-mask %}
@@ -69,40 +20,30 @@
     }
     {% endif %}
 </style>
-    {% if page.header-style == 'text' %}
-        <header class="intro-header style-text" >
-    {% else %}
-        <header data-image='{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}' class="intro-header" id="main-header">
-            <div class = "wrap vertical-parallax"></div>
-    {% endif %}
+{% if page.header-style == 'text' %}
+<header class="intro-header style-text" >
+{% else %}
+<header class="intro-header" >
+{% endif %}
     <div class="header-mask"></div>
     {% if page.header-img-credit %}
     <div class="header-img-credit">
-        Image by <a rel="nofollow" href="//{{page.header-img-credit-href}}" aria-label="Header Credit">{{page.header-img-credit}}</a>
+        Image by <a href="//{{page.header-img-credit-href}}">{{page.header-img-credit}}</a>
     </div>
     {% endif %}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {% if page.header-style == 'text' %}
-                <div class="post-heading animated post-fadeInDown">
-                    {% else %}
-                    <div class="post-heading vertical-parallax animated post-fadeInDown">
-                        {% endif %}
+                <div class="post-heading">
                     <div class="tags">
                         {% for tag in page.tags %}
-                        <a class="tag" aria-label="{{ tag }}" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag }}">{{ tag }}</a>
+                        <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag }}">{{ tag }}</a>
                         {% endfor %}
                     </div>
-                    <h1 >{{ page.title }}</h1>
+                    <h1>{{ page.title }}</h1>
                     {% comment %} always create a h2 for keeping the margin {% endcomment %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
-                    <br>
-                    {% if page.password %}
-                    {% else %}
-                    <span class="meta">{{ page.content | strip_html | strip_newlines | remove: " " | size }} words and might take {{ page.content | strip_html | strip_newlines | remove: " " | size | divided_by: 350 | plus: 1 }} minutes</span>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -124,14 +65,6 @@
         height: 100%;
         border: 0;
     }
-    /* Override Nav Style */
-    {% if page.navcolor == "invert" %}
-        .navbar-custom .nav li a,
-        .navbar-custom .nav li a:hover,
-        .navbar-custom .navbar-brand,
-        .navbar-custom .navbar-brand:hover {color:#777;}
-        .navbar-default .navbar-toggle .icon-bar {background-color:#777;}
-    {% endif %}
 </style>
 <header class="intro-header" >
     <iframe src="{{page.iframe}}"></iframe>
@@ -142,15 +75,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         {% for tag in page.tags %}
-                        <a class="tag" aria-label="{{ tag }}" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag }}">{{ tag }}</a>
+                        <a class="tag" href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}" title="{{ tag }}">{{ tag }}</a>
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
                     {% comment %} always create a h2 for keeping the margin {% endcomment %}
                     <h2 class="subheading">{{ page.subtitle }}</h2>
-                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
-                    <br>
-                    <span class="meta">{{ page.content | strip_html | strip_newlines | remove: " " | size }} words and takes {{ page.content | strip_html | strip_newlines | remove: " " | size | divided_by: 350 | plus: 1 }} minutes</span>
+                    <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %}
+                        on {{ page.date | date: "%B %-d, %Y" }}</span>
                 </div>
             </div>
         </div>
@@ -159,69 +91,20 @@
 {% endif %}
 
 {% if include.type == 'page' %}
-
-{% if page.header-img %}
-<header class="intro-header" id="header" style="background-image: url('{{ page.header-img }}')">
-{% else %}
-<style>
-    @-webkit-keyframes Gradient {
-        0% {
-            background-position: 0% 50%
-        }
-        50% {
-            background-position: 100% 50%
-        }
-        100% {
-            background-position: 0% 50%
-        }
-    }
-    @-moz-keyframes Gradient {
-        0% {
-            background-position: 0% 50%
-        }
-        50% {
-            background-position: 100% 50%
-        }
-        100% {
-            background-position: 0% 50%
-        }
-    }
-    @keyframes Gradient {
-        0% {
-            background-position: 0% 50%
-        }
-        50% {
-            background-position: 100% 50%
-        }
-        100% {
-            background-position: 0% 50%
-        }
-    }
-
-    .gradient-header {
-        background: linear-gradient(-60deg, #1abc9c, #2ecc71, #3498db, #9b59b6, #34495e);
-        background-size: 400% 400%;
-        -webkit-animation: Gradient 15s ease infinite;
-        -moz-animation: Gradient 15s ease infinite;
-        animation: Gradient 15s ease infinite;
-    }
-    </style>
-<header class="intro-header gradient-header" id="header">
-{% endif %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {% if include.short %}
-                <div class="site-heading" id="tag-heading">
-                    {% else %}
-                    <div class="site-heading">
-                        {% endif %}
-                        <h1 class="animated fadeInDown">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
-                        <span class="subheading animated fadeInDown delay-1s">{{ page.description }}</span>
-                    </div>
-                </div>
-            </div>
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        {% if include.short %}
+        <div class="site-heading" id="tag-heading">
+        {% else %}
+        <div class="site-heading">
+        {% endif %}
+          <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+          <span class="subheading">{{ page.description }}</span>
         </div>
+      </div>
     </div>
+  </div>
 </header>
 {% endif %}

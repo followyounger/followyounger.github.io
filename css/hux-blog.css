@@ -1,37 +1,18 @@
-/*!
- * Hux Blog v1.7.0 (http://huxpro.github.io)
- * Copyright 2018 Hux <huxpro@gmail.com>
- *
- * Soptlog v2.0.0 (https://soptq.me)
- * Copyright 2019 Hux <sooptq@gmail.com>
- */
-
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('https://cdn.jsdelivr.net/gh/Soptq/Soptq.github.io/fonts/ubuntu.woff2') format('woff2'),
-    url('https://cdn.jsdelivr.net/gh/Soptq/Soptq.github.io/fonts/ubuntu.woff') format('woff'),
-      url('https://cdn.jsdelivr.net/gh/Soptq/Soptq.github.io/fonts/ubuntu.ttf') format('opentype');
-  font-display: swap;
-}
-
 @media (min-width: 1200px) {
   .post-container,
   .sidebar-container {
     padding-right: 5%;
   }
 }
-
 @media (min-width: 768px) {
   .post-container {
     padding-right: 5%;
   }
 }
-
 .sidebar-container {
   color: #bfbfbf;
   font-size: 14px;
 }
-
 .sidebar-container h5 {
   color: #cccccc;
   padding-bottom: 1em;
@@ -66,45 +47,20 @@
 }
 .sidebar-container .short-about .list-inline > li {
   padding-left: 0px;
-  padding-bottom: 10px;
-}
-
-.sidebar-container .avatar:hover{
-  cursor: pointer;
-  box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18), 0 0px 12px 0 rgba(0,0,0,0.15);
-  opacity: .8;
 }
 .catalog-container {
   padding: 0px;
 }
-
-.side-progress {
+.side-catalog {
   display: block;
   overflow: auto;
   height: 100%;
   padding-bottom: 40px;
-  width: auto;
-}
-
-.side-progress.fixed {
-  position: fixed;
-  top: 51px;
-}
-.side-catalog {
-  display: block;
-  overflow: auto;
-  height: 80%;
-  padding-bottom: 40px;
   width: 195px;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
-}
-.side-catalog::-webkit-scrollbar {
-  width: 0px;
 }
 .side-catalog.fixed {
   position: fixed;
-  top: 51px;
+  top: -21px;
 }
 .side-catalog.fold .catalog-toggle::before {
   content: "+";
@@ -172,10 +128,6 @@
   .side-catalog {
     display: none;
   }
-
-  .side-progress {
-    display: none;
-  }
 }
 /*
   Please note this CSS is currently in   prototype form. We'll implement a cleaned up version in Web Starter Kit.
@@ -184,8 +136,10 @@
   transition-property: opacity, bottom, left, right, width, margin, border-radius;
   transition-duration: 0.5s;
   transition-timing-function: ease;
+  /*font-family: RobotoDraft;*/
   font-size: 14px;
   min-height: 14px;
+  background-color: #323232;
   background-color: #0085a1;
   position: fixed;
   display: flex;
@@ -194,22 +148,9 @@
   color: white;
   line-height: 22px;
   padding: 18px 24px;
-  bottom: 0;
+  bottom: 0px;
   opacity: 0;
-  z-index: 99;
 }
-
-.snackbar-error {
-   background-color: #ef5350;
-}
-
-.snackbar-warning {
-  background-color: #ef6c00;
-}
-.snackbar-suc {
-  background-color: #66bb6a;
-}
-
 @media (min-width: 640px) {
   .paper-snackbar {
     /*
@@ -238,7 +179,7 @@
     Multi-line snackbar height: 80 dp
     Text: Roboto Regular 14 sp
     Action button: Roboto Medium 14 sp, all-caps text
-    Default background fill: #323232 100%
+    Default background fill: #323232 100%  
   */
     left: 0px;
     right: 0px;
@@ -255,10 +196,6 @@
   padding: 0px;
   min-width: min-content;
   outline: 0px;
-}
-
-.paper-snackbar .action:hover{
-  background-color: rgba(0,0,0, 0.87);
 }
 /* Everything from here down is actually just for the demo - the material buttons and card, and various other pieces of styling */
 /* Variables */
@@ -610,9 +547,6 @@ pre.highlight {
   text-align: right;
   border-radius: 0px;
 }
-.post-content > .table-responsive tr:nth-child(odd){
-  background:#F4F4F4;
-}
 /* Landscape phones and down */
 @media (max-width: 480px) {
   .highlighter-rouge .highlight {
@@ -621,7 +555,10 @@ pre.highlight {
     border-radius: 0px;
   }
   .highlighter-rouge .highlight td.rouge-gutter {
-    width: 46px;
+    width: 36px;
+  }
+  .highlighter-rouge .highlight table > tbody > tr > td > pre {
+    padding: 14px 10px;
   }
 }
 body {
@@ -629,7 +566,7 @@ body {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   font-size: 16px;
   color: #404040;
@@ -641,6 +578,11 @@ body {
 p {
   margin: 30px 0;
 }
+@media screen and (max-width: 768px) {
+  p {
+    margin: 25px 0;
+  }
+}
 h1,
 h2,
 h3,
@@ -651,7 +593,8 @@ h6 {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  line-height: 1.7;
   line-height: 1.1;
   font-weight: bold;
 }
@@ -704,6 +647,9 @@ select.sel-lang {
   min-height: 28px;
   font-size: 14px;
 }
+table {
+  margin-top: 10px;
+}
 table.table > tbody th,
 table.table > thead th,
 table.table > tbody td,
@@ -731,6 +677,12 @@ pre code {
   white-space: pre;
   word-wrap: normal;
 }
+code,
+kbd,
+pre,
+samp {
+  font-family: "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;
+}
 .postlist-container {
   margin-bottom: 15px;
 }
@@ -747,29 +699,75 @@ pre code {
 .post-container h4,
 .post-container h5,
 .post-container h6 {
-  margin: 30px 0 10px;
+  margin: 50px 0 20px;
   line-height: 1.4;
 }
-.post-container h5 {
-  font-size: 19px;
-  font-weight: 600;
-  color: gray;
-}
-.post-container h5 + p {
-  margin-top: 5px;
-}
-.post-container h6 {
-  font-size: 16px;
-  font-weight: 600;
-  color: gray;
-}
+.post-container h1 + p,
+.post-container h2 + p,
+.post-container h3 + p,
+.post-container h4 + p,
+.post-container h5 + p,
 .post-container h6 + p {
-  margin-top: 5px;
+  margin-top: 20px;
+}
+.post-container h2::before {
+  content: " ";
+  display: block;
+  border-bottom: 1px solid #ececec;
+  margin-top: 44px;
+  margin-bottom: 30px;
+}
+.post-container h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: gray;
+}
+.post-container h4 + p {
+  margin-top: 10px;
+}
+.post-container h5,
+.post-container h6 {
+  font-size: 20px;
+  font-weight: 600;
+  color: gray;
+}
+.post-container h5 + p,
+.post-container h6 + p {
+  margin-top: 10px;
+}
+@media screen and (max-width: 768px) {
+  .post-container h1 {
+    font-size: 30px;
+  }
+  .post-container h2 {
+    font-size: 22px;
+  }
+  .post-container h3 {
+    font-size: 20px;
+  }
+  .post-container h4 {
+    font-size: 19px;
+  }
+  .post-container h5,
+  .post-container h6 {
+    font-size: 18px;
+  }
 }
 .post-container ul,
 .post-container ol {
   margin-bottom: 40px;
-  padding-left: 20px;
+}
+@media screen and (max-width: 768px) {
+  .post-container ul,
+  .post-container ol {
+    padding-left: 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .post-container ul,
+  .post-container ol {
+    padding-left: 20px;
+  }
 }
 .post-container ol ol,
 .post-container ol ul,
@@ -780,17 +778,6 @@ pre code {
 .post-container li p {
   margin: 0;
   margin-bottom: 5px;
-}
-.post-container ul:not(.pager):not(.related-list):not(.mobile-catalog-body) li {
-  list-style-type: none;
-}
-.post-container ul:not(.pager):not(.related-list):not(.mobile-catalog-body) li:before {
-  content: '\2022 ';
-  color: #0085a1;
-  padding-right: 0.5em;
-  font-size: 18px;
-  line-height: 1.5;
-  font-weight: bold;
 }
 .post-container li h1,
 .post-container li h2,
@@ -807,7 +794,6 @@ pre code {
 .post-container .pager li.next {
   float: right;
 }
-
 .post-container .pager li.previous {
   float: left;
 }
@@ -819,16 +805,11 @@ pre code {
   font-weight: normal;
   letter-spacing: 0.5px;
 }
-
-.pager li > a {
-  border-radius: 50vh;
-}
-
 .post-container .anchorjs-link {
   position: absolute;
-  padding-top: 1px;
+  text-decoration: none !important;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   /**
    * Layout
    * Since V1.6 we use absolute positioning to prevent to expand container-fluid
@@ -855,10 +836,10 @@ pre code {
     opacity: 0;
     transform: scaleX(0);
     transform-origin: top right;
-    transition: all 200ms cubic-bezier(0.47, 0, 0.4, 0.99) 1ms;
+    transition: all 200ms cubic-bezier(0.47, 0, 0.4, 0.99) 0ms;
     -webkit-transform: scaleX(0);
     -webkit-transform-origin: top right;
-    -webkit-transition: all 200ms cubic-bezier(0.47, 0, 0.4, 0.99) 1ms;
+    -webkit-transition: all 200ms cubic-bezier(0.47, 0, 0.4, 0.99) 0ms;
     /**
      *'In' Animation
      */
@@ -868,25 +849,25 @@ pre code {
     line-height: 28px;
   }
   #huxblog_navbar .navbar-collapse {
-    height: 0;
+    height: 0px;
     transform: scaleY(0);
     transform-origin: top right;
-    transition: transform 400ms cubic-bezier(0.32, 1, 0.23, 1) 1ms;
+    transition: transform 400ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
     -webkit-transform: scaleY(0);
     -webkit-transform-origin: top right;
-    -webkit-transition: -webkit-transform 400ms cubic-bezier(0.32, 1, 0.23, 1) 1ms;
+    -webkit-transition: -webkit-transform 400ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
   }
   #huxblog_navbar li {
     opacity: 0;
-    transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 1ms;
-    -webkit-transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 1ms;
+    transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    -webkit-transition: opacity 100ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   }
   #huxblog_navbar.in {
     transform: scaleX(1);
     -webkit-transform: scaleX(1);
     opacity: 1;
-    transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 1ms;
-    -webkit-transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 1ms;
+    transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    -webkit-transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   }
   #huxblog_navbar.in .navbar-collapse {
     transform: scaleY(1);
@@ -912,7 +893,7 @@ pre code {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
 }
 .navbar-custom .navbar-brand {
@@ -1003,11 +984,9 @@ pre code {
     top: -61px;
     background-color: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid #f2f2f2;
-    -webkit-transition: -webkit-transform 0.3s, background-color 0.3s, border-bottom-color 0.3s;
-    -moz-transition: -moz-transform 0.3s, background-color 0.3s, border-bottom-color 0.3s;
-    transition: transform 0.3s, background-color 0.3s, border-bottom-color 0.3s;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
   }
   .navbar-custom.is-fixed .navbar-brand {
     color: #404040;
@@ -1034,14 +1013,13 @@ pre code {
 }
 .intro-header {
   background: no-repeat center center;
-  background-color: transparent;
+  background-color: #cccccc;
   background-attachment: scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
   margin-bottom: 0px;
-  overflow: hidden;
   /* 0 on mobile, modify by Hux */
 }
 .intro-header.style-text {
@@ -1056,9 +1034,6 @@ pre code {
 .intro-header.style-text .site-heading .subheading,
 .intro-header.style-text .post-heading .subheading,
 .intro-header.style-text .page-heading .subheading {
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
   margin-bottom: 15px;
 }
 .intro-header.style-text .tags a,
@@ -1114,7 +1089,7 @@ pre code {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   font-size: 18px;
   line-height: 1.1;
@@ -1142,7 +1117,7 @@ pre code {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   font-size: 17px;
   line-height: 1.4;
@@ -1154,7 +1129,7 @@ pre code {
   font-family: 'Lora', 'Times New Roman', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
 }
 .intro-header .post-heading .meta a {
   color: white;
@@ -1171,8 +1146,6 @@ pre code {
   }
 }
 .intro-header .header-img-credit {
-  font-family: 'Lora', 'Times New Roman', serif;
-  font-style: italic;
   position: absolute;
   bottom: 6px;
   right: 9px;
@@ -1206,9 +1179,6 @@ pre code {
   margin-bottom: 8px;
 }
 .post-preview > a > .post-subtitle {
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
   font-size: 15px;
   line-height: 1.3;
   margin: 0;
@@ -1224,7 +1194,7 @@ pre code {
 }
 .post-preview > .post-meta > a {
   text-decoration: none;
-  color: #ccc;
+  color: #404040;
 }
 .post-preview > .post-meta > a:hover,
 .post-preview > .post-meta > a:focus {
@@ -1239,6 +1209,9 @@ pre code {
   }
   .post-preview > a > .post-subtitle {
     font-size: 16px;
+  }
+  .post-preview .post-meta {
+    font-size: 18px;
   }
 }
 .post-content-preview {
@@ -1270,53 +1243,25 @@ pre code {
   border-bottom-left-radius: 5px;
 }
 footer {
-  position: relative;
   font-size: 20px;
-  padding: 80px 0 65px;
-  background-color: #2e3033;
-  margin-bottom: -40px !important;
-  padding-bottom: -100px !important;
-  margin-top: 80px !important;
+  padding: 50px 0 65px;
 }
 footer .list-inline {
   margin: 0;
   padding: 0;
 }
 footer .copyright {
-  color: #FFF;
   font-size: 14px;
   text-align: center;
   margin-bottom: 0;
 }
 footer .copyright a {
-  color: ghostwhite;
+  color: #337ab7;
 }
 footer .copyright a:hover,
 footer .copyright a:focus {
-  color: ghostwhite;
+  color: #0085a1;
 }
-
-footer .copyright a img{
-  opacity: 0.8;
-  cursor: pointer !important;
-}
-
-footer .copyright a img:hover{
-  opacity: 1.0;
-}
-
-footer .avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid white;
-}
-
-footer .avatar:hover{
-  cursor: pointer;
-  box-shadow: 0 0px 4px 0 rgba(0,0,0,0.18), 0 0px 12px 0 rgba(0,0,0,0.15);
-}
-
 .floating-label-form-group {
   font-size: 14px;
   position: relative;
@@ -1353,7 +1298,7 @@ footer .avatar:hover{
   -ms-transition: top 0.3s ease, opacity 0.3s ease;
   transition: top 0.3s ease, opacity 0.3s ease;
 }
-.floating-label-form-group:not(:first-child) {
+.floating-label-form-group::not(:first-child) {
   padding-left: 14px;
   border-left: 1px solid #eeeeee;
 }
@@ -1372,7 +1317,7 @@ form .row:first-child .floating-label-form-group {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   text-transform: uppercase;
   font-size: 14px;
@@ -1401,7 +1346,7 @@ form .row:first-child .floating-label-form-group {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
   text-transform: uppercase;
   font-size: 13px;
@@ -1417,28 +1362,9 @@ form .row:first-child .floating-label-form-group {
     font-size: 14px;
     padding: 15px 25px;
   }
-
-  .pager .default-pager > a {
-    font-size: 14px;
-    padding: 1px 8px;
-  }
-
-  .pager .default-pager .active {
-    background-color: #0085a1 !important;
-    border: 1px solid #0085a1 !important;
-    color: white !important;
-  }
 }
-
-@media only screen and (max-width: 768px) {
-  .pager .default-pager{
-    display: none;
-  }
-}
-
 .pager li > a {
   color: #404040;
-  border-radius: 27px;
 }
 .pager li > a:hover,
 .pager li > a:focus {
@@ -1555,8 +1481,6 @@ img::-moz-selection {
 #tag_cloud a.focus,
 #tag_cloud .tag.focus {
   box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.239216) 0 1px 4px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.239216) 0 1px 4px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.239216) 0 1px 4px;
 }
 #tag_cloud a.tag-button--all,
 #tag_cloud .tag.tag-button--all {
@@ -1609,21 +1533,9 @@ img::-moz-selection {
      *     TypeIsBeautiful,
      *     [This Post](http://zhuanlan.zhihu.com/ibuick/20186806) etc.
      */
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
   line-height: 1.7;
 }
-
-.mini-post-list .tag-text-num{
-  background-color: whitesmoke;
-  padding: 2px 8px;
-  margin-left: 10px;
-  font-weight: 100;
-  font-size: 12px;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  line-height: 1.2;
-  border-radius: 4px;
-}
-
 .mini-post-list .post-preview {
   position: relative;
 }
@@ -1665,11 +1577,6 @@ img::-moz-selection {
   max-width: 100%;
   height: auto;
   margin: 1.5em auto 1.6em auto;
-}
-.post-container img.lazyload:not(.loaded) {
-  width: 100%;
-  padding-bottom: 53.22%;
-  background-color: rgb(195, 195, 195);
 }
 /* Hux Optimize UserExperience */
 .navbar-default .navbar-toggle:focus,
@@ -1767,11 +1674,9 @@ img::-moz-selection {
   position: absolute;
   width: 100%;
   bottom: 0;
+  padding-bottom: 20px;
   opacity: 0.6;
   color: #fff;
-  margin-bottom: 0 !important;
-  padding: 20px 0 20px;
-  background-color: transparent;
 }
 .page-fullscreen footer .copyright {
   color: #fff;
@@ -1785,1304 +1690,4 @@ img::-moz-selection {
 .MathJax_SVG_Display {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-}
-/* Search Styles */
-.search-box .wrapper {
-  width: 960px;
-  max-width: 90%;
-  margin: 0 auto;
-  position: relative;
-}
-
-@media only screen and (min-width: 932px) {
-  .search-box {
-    padding-top: 10px;
-    position: fixed;
-    top: 0;
-    left: 100px;
-    width: 450px;
-    height: 400px;
-    z-index: 100;
-    background: #fff;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-    opacity: 0;
-    -webkit-transform: translate(0, 5%);
-    -ms-transform: translate(0, 5%);
-    transform: translate(0, 5%);
-    box-shadow: 0 0px 40px 0 rgba(0,0,0,0.18);
-  }
-
-  .search-form {
-    margin-bottom: 5px;
-  }
-
-  .search-grid {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .search-form .search {
-    width: 100%;
-    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    padding: 10px;
-    font-weight: bold;
-    border: none;
-    border-bottom: 1px solid #d9d9d9;
-    outline: none;
-    font-size: 16px;
-    color: #3e3e40;
-    background-color: transparent;
-  }
-
-  .results-search {
-    list-style: none;
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 300px;
-    margin: 0;
-    padding: 0;
-    -ms-overflow-style:none;
-    overflow:-moz-scrollbars-none;
-  }
-
-  .results-search::-webkit-scrollbar {
-    width: 0;
-  }
-
-  .results-search li {
-    padding: 8px 4px;
-    -webkit-transition: all .12s;
-    -moz-transition: all .12s;
-    transition: all .12s;
-  }
-
-  .icon-close-container {
-    position: absolute;
-    top: 10px;
-    right: 0;
-  }
-
-
-  .results-search li a {
-    text-decoration: none;
-    color: #3e3e40;
-  }
-
-  .results-search li a:hover {
-    opacity: .8;
-    -webkit-transition: all .12s;
-    -moz-transition: all .12s;
-    transition: all .12s;
-  }
-
-  .results-search li:hover {
-    background-color: #efefef;
-    border-radius: 5px;
-  }
-
-    .search-box.search-active {
-        opacity: 1;
-        -webkit-transform: translate(0, 2%);
-        -ms-transform: translate(0, 2%);
-        transform: translate(0, 2%);
-    }
-}
-
-@media only screen and (max-width: 932px) {
-  .search-box {
-    padding-top: 40px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 100;
-    background: #fff;
-    -webkit-transition: all .6s ease-in-out;
-    transition: all .6s ease-in-out;
-    opacity: 1;
-    -webkit-transform: translate(0, -150%);
-    -ms-transform: translate(0, -150%);
-    transform: translate(0, -150%);
-  }
-
-  .search-form {
-    margin-bottom: 15px;
-  }
-
-  .search-grid {
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  .search-form .search {
-    width: 100%;
-    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    padding: 15px;
-    border: none;
-    border-bottom: 1px solid #d9d9d9;
-    outline: none;
-    font-size: 18px;
-    color: #3e3e40;
-  }
-
-  .results-search {
-    list-style: none;
-    overflow: auto;
-    height: 90vh;
-    margin: 0;
-    padding: 0;
-    -ms-overflow-style:none;
-    overflow:-moz-scrollbars-none;
-  }
-
-  .results-search::-webkit-scrollbar {
-    width: 0;
-  }
-
-  .results-search li {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #d9d9d9;
-    -webkit-transition: all .12s;
-    -moz-transition: all .12s;
-    transition: all .12s;
-  }
-
-  .icon-close-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-
-
-  .results-search li a {
-    text-decoration: none;
-    color: #3e3e40;
-  }
-
-  .results-search li a:hover {
-    color: #87314e;
-    opacity: .8;
-    -webkit-transition: all .12s;
-    -moz-transition: all .12s;
-    transition: all .12s;
-  }
-
-    .search-box.search-active {
-        opacity: 1;
-        -webkit-transform: translate(0, 0%);
-        -ms-transform: translate(0, 0%);
-        transform: translate(0, 0%);
-    }
-}
-
-
-.search-icon-container {
-  width: 25%;
-  text-align: right;
-}
-
-.search-icon a,
-.search-icon-close {
-  cursor: pointer;
-  font-size: 18px;
-  color: #311e3e;
-  -webkit-transition: all .6s;
-  transition: all .6s;
-}
-
-.search-icon a:hover,
-.search-icon-close:hover {
-  opacity: .8;
-}
-
-.search-icon,
-.search-icon-close {
-  font-size: 16px;
-}
-
-/* -----------------------------------------------------
-  Material Design Buttons
-  https://codepen.io/rkchauhan/pen/NNKgJY
-  By: Ravikumar Chauhan
-  Find me on -
-  Twitter: https://twitter.com/rkchauhan01
-  Facebook: https://www.facebook.com/ravi032chauhan
-  GitHub: https://github.com/rkchauhan
-  CodePen: https://codepen.io/rkchauhan
--------------------------------------------------------- */
-
-/* ----------------------------------------------------------------------
-  Material Design Raised Buttons - by Ravikumar Chauhan
-------------------------------------------------------------------------- */
-.rkmd-btn {
-  text-transform: uppercase;
-  margin: 0px 0px 0px 24px;
-  padding: 0px;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  height: 35px;
-  line-height: 35px;
-  padding: 0 1.5rem;
-  color: #ffeb3b;
-  font-size: inherit;
-  font-weight: 600;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  letter-spacing: 0.8px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  vertical-align: middle;
-  white-space: nowrap;
-  outline: 0px;
-  border: none;
-  user-select: none;
-  border-radius: 2px;
-  transition: all 0.3s ease-out;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
-  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
-  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
-}
-.rkmd-btn:hover {
-  text-decoration: none;
-  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
-  -webkit-box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
-  -moz-box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
-}
-
-/* ----------------------------------------------------------------------
-  Material Design Fab Buttons - by Ravikumar Chauhan
-------------------------------------------------------------------------- */
-.rkmd-btn.btn-fab, .rkmd-btn.btn-fab-mini {
-  overflow: hidden;
-  position: relative;
-  margin: auto;
-  padding: 0;
-  line-height: normal;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
-}
-.rkmd-btn.btn-fab:hover, .rkmd-btn.btn-fab-mini:hover {
-  box-shadow: 0 4px 11px 0px rgba(0, 0, 0, 0.375);
-  -webkit-box-shadow: 0 4px 11px 0px rgba(0, 0, 0, 0.375);
-  -moz-box-shadow: 0 4px 11px 0px rgba(0, 0, 0, 0.375);
-}
-.rkmd-btn.btn-fab i, .rkmd-btn.btn-fab-mini i {
-  display: inline-block;
-  float: none;
-  width: inherit;
-  margin: 0;
-  font-size: inherit;
-  text-align: center;
-  line-height: 0;
-  vertical-align: middle;
-}
-.rkmd-btn.btn-fab {
-  width: 56px;
-  height: 56px;
-  font-size: 28px;
-}
-.rkmd-btn.btn-fab-mini {
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
-}
-
-/* Buttons Color */
-.rkmd-btn.btn-lightBlue {
-  color: #fff;
-  background-color: #03a9f4;
-}
-.rkmd-btn.btn-lightBlue:hover {
-  background-color: #23b9fc;
-}
-.rkmd-btn.btn-white {
-  color: #444;
-  background-color: #fff;
-}
-.rkmd-btn.btn-white:hover {
-  background-color: #fafafa;
-}
-.rkmd-btn.btn-black {
-  color: #bdbdbd;
-  background-color: #111;
-}
-.rkmd-btn.btn-black:hover {
-  background-color: #252525;
-}
-.rkmd-btn.btn-grey {
-  color: #757575;
-  background-color: #f5f5f5;
-}
-.rkmd-btn.btn-grey:hover {
-  background-color: #ebebeb;
-}
-.rkmd-btn.btn-orange {
-  color: #fff;
-  background-color: #ff9800;
-}
-.rkmd-btn.btn-orange:hover {
-  background-color: #ffa829;
-}
-.rkmd-btn.btn-amber {
-  color: #fff;
-  background-color: #ffc107;
-}
-.rkmd-btn.btn-amber:hover {
-  background-color: #ffcb30;
-}
-.rkmd-btn.btn-green {
-  color: #fff;
-  background-color: #4caf50;
-}
-.rkmd-btn.btn-green:hover {
-  background-color: #67bd6a;
-}
-.rkmd-btn.btn-teal {
-  color: #fff;
-  background-color: #009688;
-}
-.rkmd-btn.btn-teal:hover {
-  background-color: #00bfad;
-}
-.rkmd-btn.btn-cyan {
-  color: #fff;
-  background-color: #00bcd4;
-}
-.rkmd-btn.btn-cyan:hover {
-  background-color: #00e0fd;
-}
-.rkmd-btn.btn-indigo {
-  color: #fff;
-  background-color: #3f51b5;
-}
-.rkmd-btn.btn-indigo:hover {
-  background-color: #5869c5;
-}
-.rkmd-btn.btn-deepPurple {
-  color: #fff;
-  background-color: #673ab7;
-}
-.rkmd-btn.btn-deepPurple:hover {
-  background-color: #7c52c8;
-}
-.rkmd-btn.btn-pink {
-  color: #fff;
-  background-color: #e91e63;
-}
-.rkmd-btn.btn-pink:hover {
-  background-color: #ed437d;
-}
-.rkmd-btn.btn-red {
-  color: #fff;
-  background-color: #f44336;
-}
-.rkmd-btn.btn-red:hover {
-  background-color: #f6675d;
-}
-.rkmd-btn.btn-yellow {
-  color: #fff;
-  background-color: #ffeb3b;
-}
-.rkmd-btn.btn-yellow:hover {
-  background-color: #f8de00;
-}
-.rkmd-btn.btn-lime {
-  color: #fff;
-  background-color: #cddc39;
-}
-.rkmd-btn.btn-lime:hover {
-  background-color: #bac923;
-}
-.rkmd-btn.btn-brown {
-  color: #fff;
-  background-color: #795548;
-}
-.rkmd-btn.btn-brown:hover {
-  background-color: #936757;
-}
-
-/* Raised Buttons Size (Not work in Fab Buttons) */
-.rkmd-btn.btn-lg {
-  height: 48px;
-  line-height: 48px;
-}
-.rkmd-btn.btn-sm {
-  height: 30px;
-  padding: 0 1rem;
-  line-height: 30px;
-  font-size: 12px;
-}
-.rkmd-btn.btn-xs {
-  height: 24px;
-  padding: 0 0.4rem;
-  line-height: 24px;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 0.2px;
-}
-
-/* Raised Buttons Types */
-.rkmd-btn.disabled, .rkmd-btn[disabled] {
-  cursor: default !important;
-  color: #9e9e9e !important;
-  box-shadow: none !important;
-}
-.rkmd-btn.disabled:not(.btn-flat), .rkmd-btn[disabled]:not(.btn-flat) {
-  background-color: #cdcdcd !important;
-}
-.rkmd-btn.disabled:not(.btn-flat):hover, .rkmd-btn[disabled]:not(.btn-flat):hover {
-  background-color: #cdcdcd !important;
-}
-.rkmd-btn.btn-flat {
-  box-shadow: none !important;
-  background-color: transparent !important;
-}
-.rkmd-btn.btn-flat:hover {
-  background-color: #cecece !important;
-  box-shadow: none !important;
-}
-.rkmd-btn.btn-flat.disabled:hover, .rkmd-btn.btn-flat[disabled]:hover {
-  background-color: transparent !important;
-}
-.rkmd-btn.btn-link {
-  color: #3949ab !important;
-  box-shadow: none !important;
-  background-color: transparent !important;
-}
-.rkmd-btn.btn-link:hover {
-  text-decoration: underline !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-.rkmd-btn.btn-link.disabled, .rkmd-btn.btn-link[disabled] {
-  color: #9fa8da !important;
-  text-decoration: underline !important;
-  background-color: transparent !important;
-}
-.rkmd-btn.btn-link.disabled:hover, .rkmd-btn.btn-link[disabled]:hover {
-  background-color: transparent !important;
-}
-.rkmd-btn i {
-  float: left;
-  width: auto;
-  height: auto;
-  margin-right: 10px;
-  font-size: 1.3rem;
-  line-height: inherit;
-}
-.rkmd-btn i.right {
-  float: right !important;
-  margin: 0;
-  margin-left: 10px;
-}
-
-/* ----------------------------------------------------------------------
-  Material Design Ripple Effect - by Ravikumar Chauhan
-------------------------------------------------------------------------- */
-.ripple-effect {
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  vertical-align: middle;
-  user-select: none;
-  z-index: 1;
-}
-.ripple-effect .ripple {
-  display: block;
-  position: absolute;
-  border-radius: 100%;
-  background: rgba(255, 255, 255, 0.5);
-  transform: scale(0);
-  pointer-events: none;
-}
-.ripple-effect.ripple-dark .ripple {
-  background: rgba(0, 0, 0, 0.1) !important;
-}
-.ripple-effect.ripple-red .ripple {
-  background: rgba(244, 67, 54, 0.725) !important;
-}
-.ripple-effect.ripple-orange .ripple {
-  background: rgba(255, 152, 0, 0.725) !important;
-}
-.ripple-effect.ripple-yellow .ripple {
-  background: rgba(255, 235, 59, 0.725) !important;
-}
-.ripple-effect.ripple-green .ripple {
-  background: rgba(76, 175, 80, 0.725) !important;
-}
-.ripple-effect.ripple-purple .ripple {
-  background: rgba(156, 39, 176, 0.725) !important;
-}
-.ripple-effect.ripple-teal .ripple {
-  background: rgba(0, 150, 136, 0.725) !important;
-}
-.ripple-effect.ripple-pink .ripple {
-  background: rgba(233, 30, 99, 0.725) !important;
-}
-.ripple-effect .animated {
-  animation: ripple 0.6s linear;
-}
-@-webkit-keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
-@-moz-keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
-@-ms-keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
-@-o-keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
-@keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
-
-/* d3.js */
-
-/* Bar Chart */
-
-.bar {
-  fill: rgb(200, 199, 198);
-  -moz-transition: all .5s ease 0s;
-  -webkit-transition:all .5s ease 0s;
-  transition:all .5s ease 0s;
-  -o-transition:all .5s ease 0s;
-}
-.bar:hover {
-  fill: #0085a1;
-  -moz-transition: all .5s ease 0s;
-  -webkit-transition:all .5s ease 0s;
-  transition:all .5s ease 0s;
-  -o-transition:all .5s ease 0s;
-}
-.axis {
-  font: 10px sans-serif;
-}
-
-.barNum {
-  font: 10px sans-serif;
-}
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-.x.axis path {
-  display: none;
-}
-
-/* Pie Chart */
-.arc text {
-  font: 12px -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  text-anchor: middle;
-}
-.arc path {
-  stroke: #fff;
-}
-
-/*password protection*/
-
-.staticrypt-form input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 2px solid #f2f2f2;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-  transition: all 200ms;
-  -webkit-transition: all 200ms;
-}
-.staticrypt-form .staticrypt-decrypt-button {
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #0085a1;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.staticrypt-form .staticrypt-decrypt-button:hover, .staticrypt-form .staticrypt-decrypt-button:active, .staticrypt-form .staticrypt-decrypt-button:focus {
-  background: #006e85;
-}
-
-.staticrypt-title {
-  font-size: 1.5em;
-}
-
-#render-block {
-  background-color: #f2f2f2;
-  color: grey;
-  font-size: 0.95em;
-  margin: 20px 0 20px;
-  padding: 20px 20px 40px;
-}
-
-.btn-copy {
-  background: rgb(64, 64, 64);
-  border: 0;
-}
-
-.btn-copy:hover {
-  background: #0085a1;
-  border: 0;
-}
-
-centerquote {
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  display: block;
-  border-width: 2px 0;
-  border-style: solid;
-  border-color: #eee;
-  padding: 1.5em 0 0.5em;
-  margin: 1.5em 0;
-  position: relative;
-  text-align: left;
-}
-
-
-centerquote:before {
-  content: '\201C';
-  position: absolute;
-  top: -0.1em;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  width: 3rem;
-  height: 2rem;
-  font: 6em/1.08em sans-serif;
-  color: #666;
-  text-align: center;
-}
-
-centerquote:after {
-  content: '\201D';
-  position: absolute;
-  bottom: 0.05em;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  background: #fff;
-  width: 3rem;
-  height: 2rem;
-  font: 6em/1.08em sans-serif;
-  color: #666;
-  text-align: center;
-}
-
-/*centerquote:after {*/
-/*content: "\2013 \2003" attr(cite);*/
-/*display: block;*/
-/*text-align: right;*/
-/*font-size: 0.875em;*/
-/*color: #e74c3c;*/
-/*}*/
-
-centerquote p {
-  margin: 0;
-}
-
-.copyright-block {
-  margin: 20px 0px 20px;
-  border-left: 5px solid #0085a1;
-}
-
-.copyright-block p {
-  margin: 0px 0px 0px 20px;
-}
-
-
-.side-progress {
-  margin-top: 30px;
-}
-
-.progress {
-  background-color: #323a45;
-  border-radius: 3px;
-  box-shadow: none;
-}
-
-.progress.progress-lg {
-  height: 50px;
-}
-
-.progress.vertical {
-  position: relative;
-  width: 20px;
-  height: 230px;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.progress.vertical > .progress-bar {
-  width: 100% !important;
-  position: absolute;
-  bottom: 0;
-}
-
-.progress.vertical.progress-lg {
-  width: 30px;
-}
-
-.progress-bar.text-left {
-  text-align: left;
-}
-
-.progress-bar.text-left span {
-  margin-left: 10px;
-}
-
-.progress-bar.text-right {
-  text-align: right;
-}
-
-.progress-bar.text-right span {
-  margin-right: 10px;
-}
-
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
-@keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
-.progress.active .progress-bar, .progress-bar.active {
-  -webkit-animation: progress-bar-stripes 2s linear infinite;
-  -o-animation: progress-bar-stripes 2s linear infinite;
-  animation: progress-bar-stripes 2s linear infinite;
-}
-
-.progress-striped .progress-bar, .progress-bar-striped {
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
-  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
-  background-size: 40px 40px;
-}
-
-.progress-bar-secondary {
-  background-color: #f5f5f5;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-.progress:hover {
-  cursor: pointer;
-  box-shadow: 0 0px 4px rgba(0,0,0,0.18) inset;
-  -webkit-box-shadow: 0 0px 4px rgba(0,0,0,0.18) inset;
-  -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.18) inset;
-  opacity: .8;
-}
-
-.eclosion {
-  box-shadow: 0 0px 40px #04070d inset, 0 0px 40px #04070d;
-  -webkit-box-shadow: 0 0px 40px #04070d inset, 0 0px 40px #04070d;
-  -moz-box-shadow: 0 0px 40px #04070d inset, 0 0px 40px #04070d;
-}
-
-/* soptq copy these '.extension' from jekyll-text-theme https://github.com/kitian616/jekyll-TeXt-theme */
-/* usage: https://tianqi.name/jekyll-TeXt-theme/docs/zh/extensions */
-
-.extensions {
-  margin: 1rem 0;
-}
-
-.extensions--video, .extensions--slide, .extensions--demo {
-  position: relative;
-  width: 100%;
-  padding: 0;
-}
-.extensions--video > iframe, .extensions--slide > iframe, .extensions--demo > iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.extensions--video {
-  padding-top: 56.25%;
-}
-
-.extensions--slide {
-  padding-top: 81.3021702838%;
-}
-
-.extensions--demo {
-  min-height: 340px;
-  padding-top: 56.25%;
-}
-
-.extensions--audio {
-  display: block;
-  max-width: 100% !important;
-}
-
-.footnotes {
-  font-size: 14px;
-  margin-top: 30px;
-  margin-bottom: 5px;
-  border-left: 5px solid cornflowerblue;
-  position: relative;
-  padding-top: 45px;
-}
-
-.footnotes:before {
-  content: '参考';
-  position: absolute;
-  top: 0px;
-  left: 20px;
-  font: 24px 'Ubuntu', sans-serif;
-  color: #404040;
-  text-align: left;
-  font-weight: bold;
-}
-
-@media screen and (max-width: 768px){
-  .footnotes:before {
-    left: 10px;
-  }
-}
-
-.reproduce-block {
-  margin: 20px 0px 20px;
-  border-left: 5px solid darkorange;
-}
-
-.reproduce-block p {
-  margin: 0px 0px 0px 20px;
-}
-
-.reproduce-block h3 {
-  margin: 0px 0px 0px 20px;
-}
-
-.demo-btn {
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #0085a1;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.demo-btn:hover {
-  background: #006e85;
-}
-
-.demo-btn:disabled {
-  color: #bdbdbd;
-  background: #eceff1;
-}
-
-.mobile-catalog{
-  margin: 20px 0;
-  background-color: whitesmoke;
-  padding: 10px 30px;
-}
-
-.mobile-catalog.fold .mobile-catalog-toggle::before {
-  content: "+";
-}
-.mobile-catalog.fold .mobile-catalog-body {
-  display: none;
-}
-.mobile-catalog .mobile-catalog-toggle::before {
-  content: "−";
-  position: relative;
-  margin-right: 5px;
-  bottom: 1px;
-}
-
-.mobile-catalog-body {
-  margin-bottom: 0px !important;
-}
-
-.mobile-catalog .mobile-catalog-body li {
-  position: relative;
-  list-style: none;
-}
-.mobile-catalog .mobile-catalog-body li a {
-  max-width: 180px;
-  display: inline-block;
-  vertical-align: middle;
-  height: 30px;
-  line-height: 30px;
-  overflow: hidden;
-  text-decoration: none;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.mobile-catalog .mobile-catalog-body .h1_nav,
-.mobile-catalog .mobile-catalog-body .h2_nav,
-.mobile-catalog .mobile-catalog-body .h3_nav {
-  margin-left: 0;
-  font-size: 13px;
-  font-weight: bold;
-}
-.mobile-catalog .mobile-catalog-body .h4_nav,
-.mobile-catalog .mobile-catalog-body .h5_nav,
-.mobile-catalog .mobile-catalog-body .h6_nav {
-  margin-left: 10px;
-  font-size: 12px;
-}
-.mobile-catalog .mobile-catalog-body .h4_nav a,
-.mobile-catalog .mobile-catalog-body .h5_nav a,
-.mobile-catalog .mobile-catalog-body .h6_nav a {
-  max-width: 170px;
-}
-.mobile-catalog .mobile-catalog-body .active {
-  border-radius: 4px;
-  background-color: #F5F5F5;
-}
-.mobile-catalog .mobile-catalog-body .active a {
-  color: #0085a1!important;
-}
-
-@media (min-width: 1200px) {
-  .mobile-catalog {
-    display: none;
-  }
-}
-
-.theme-toggle {
-  cursor: pointer;
-  position: relative;
-  height: 60px;
-  width: 160px;
-  margin: 0 auto;
-  margin-bottom: 30px;
-}
-
-.theme-toggle .line {
-  position: absolute;
-  height: 10px;
-  width: 60%;
-  background-color: #2C3135;
-  left: 50%;
-  top: 50%;
-  margin-top: -5px;
-  margin-left: -30%;
-  border-radius: 5px;
-}
-.theme-toggle .circle {
-  position: absolute;
-  left: 0;
-  height: 60px;
-  width: 60px;
-  box-sizing: border-box;
-  background-color: #191D20;
-  border: 7px solid #656D78;
-  border-radius: 100%;
-  transition: all 0.4s cubic-bezier(0.515, 0.005, 0.505, 1);
-}
-.theme-toggle .shadow {
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  height: 84px;
-  width: 84px;
-  border: 12px solid #191D20;
-  border-radius: 100%;
-  transition: all 0.4s cubic-bezier(0.515, 0.005, 0.505, 1);
-}
-
-.theme-container.clicked .circle {
-  left: 100%;
-  margin-left: -60px;
-  border: 30px solid #FAFBFD;
-}
-
-.theme-container.clicked .shadow {
-  left: 100%;
-  margin-left: -72px;
-}
-
-.theme-container {
-  border-radius: 10px;
-  background-color: #191D20;
-  height: 200px;
-  padding-top: 10px;
-  margin-left: calc(50% - 120px);
-  margin-right: calc(50% - 120px);
-  margin-bottom: 20px;
-}
-
-.theme-container > p {
-  color: #656D78;
-  font-weight: bold;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.spoiler {
-  color: transparent;
-  display: inline-block !important;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.spoiler.show {
-  text-shadow: none;
-  display: inline-block !important;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.spoiler.noselect {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-
-@media screen and (min-width: 932px) {
-  .footer-flex {
-    display: flex;
-  }
-  .theme-container {
-    flex-grow: 1;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .cp-container {
-    flex-grow: 3;
-  }
-}
-
-@keyframes b2t-bounceIn{
-  0%{
-    opacity: 0;
-    transform: scale(0.3) translate3d(0,0,0);
-  }
-  50%{
-    opacity: 0.9;
-    transform: scale(1.1);
-  }
-  80%{
-    opacity: 1;
-    transform: scale(0.89);
-  }
-  100%{
-    opacity: 1;
-    transform: scale(1) translate3d(0,0,0);
-  }
-}
-
-@keyframes b2t-bounceOut{
-  0%{
-    opacity: 1;
-    transform: scale(1) translate3d(0,0,0);
-  }
-  50%{
-    opacity: 1;
-    transform: scale(0.89);
-  }
-  100%{
-    opacity: 0;
-    transform: scale(0.3) translate3d(0,0,0);
-  }
-}
-
-.anim-bounceIn {
-  opacity: 0;
-  animation-name: b2t-bounceIn;
-  animation-duration: 250ms;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-.anim-bounceOut {
-  opacity: 1;
-  animation-name: b2t-bounceOut;
-  animation-duration: 450ms;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-.scroll-to-top-btn {
-  cursor: pointer;
-  visibility: hidden;
-  position:fixed;
-  width:64px;
-  height:40px;
-  bottom:40px;
-  right:40px;
-  background-color:#fff;
-  border-radius:4px;
-  color:#777777;
-  text-align:center;
-  box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.239216) 0 1px 4px;
-  z-index: 2;
-}
-
-.scroll-to-top-btn:hover {
-  color: black;
-}
-
-.scroll-to-top-btn:active {
-  background-color:#e0e0e0;
-}
-
-.theme-container label {
-  display: inline-block;
-  color: #fff;
-  cursor: pointer;
-  position: relative;
-  font-size: 16px;
-  padding-top: 10px
-}
-
-.theme-container label span {
-  display: inline-block;
-  position: relative;
-  background-color: transparent;
-  width: 25px;
-  height: 25px;
-  transform-origin: center;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  vertical-align: -6px;
-  margin-right: 10px;
-  transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
-}
-.theme-container label span:before {
-  content: "";
-  width: 0px;
-  height: 2px;
-  border-radius: 2px;
-  background: #fff;
-  position: absolute;
-  transform: rotate(45deg);
-  top: 11px;
-  left: 7px;
-  transition: width 50ms ease 50ms;
-  transform-origin: 0% 0%;
-}
-.theme-container label span:after {
-  content: "";
-  width: 0;
-  height: 2px;
-  border-radius: 2px;
-  background: #fff;
-  position: absolute;
-  transform: rotate(305deg);
-  top: 15px;
-  left: 8px;
-  transition: width 50ms ease;
-  transform-origin: 0% 0%;
-}
-.theme-container label:hover span:before {
-  width: 5px;
-  transition: width 100ms ease;
-}
-.theme-container label:hover span:after {
-  width: 10px;
-  transition: width 150ms ease 100ms;
-}
-
-.theme-container input[type="checkbox"] {
-  display: none;
-}
-.theme-container input[type="checkbox"]:checked + label span {
-  background-color: #fff;
-  transform: scale(1.25);
-}
-.theme-container input[type="checkbox"]:checked + label span:after {
-  width: 10px;
-  background: #1790b5;
-  transition: width 150ms ease 100ms;
-}
-.theme-container input[type="checkbox"]:checked + label span:before {
-  width: 5px;
-  background: #1790b5;
-  transition: width 150ms ease 100ms;
-}
-.theme-container input[type="checkbox"]:checked + label:hover span {
-  background-color: #fff;
-  transform: scale(1.25);
-}
-.theme-container input[type="checkbox"]:checked + label:hover span:after {
-  width: 10px;
-  background: #1790b5;
-  transition: width 150ms ease 100ms;
-}
-.theme-container input[type="checkbox"]:checked + label:hover span:before {
-  width: 5px;
-  background: #1790b5;
-  transition: width 150ms ease 100ms;
-}
-
-.global-transition {
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
-}
-
-.global-transition * {
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
 }

@@ -129,6 +129,7 @@
 		getSection: function(windowPos) {
 			var returnValue = null;
 			var windowHeight = Math.round(this.$win.height() * this.config.scrollThreshold);
+
 			for(var section in this.sections) {
 				if((this.sections[section] - windowHeight) < windowPos) {
 					returnValue = section;

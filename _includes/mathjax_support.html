@@ -2,8 +2,11 @@
   MathJax.Hub.Config({
     TeX: {
       equationNumbers: {
-        autoNumber: "all"
+        autoNumber: "AMS"
       }
+    },
+    SVG: {
+      scale: 90
     },
     tex2jax: {
       inlineMath: [ ['$','$'] ],
@@ -12,5 +15,6 @@
     }
   });
 </script>
-<script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js"></script>
-<script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/config/TeX-AMS-MML_HTMLorMML.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>

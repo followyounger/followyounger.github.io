@@ -1,74 +1,29 @@
 ---
 layout: page
-id: index
-description: "心之所向"
+description: "我干了什么 究竟拿了时间换了什么"
 ---
 
 {% for post in paginator.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
-
-        {% if post.password %}
-        <h2 class="post-title">
-            {{ post.title }}
-            <i class="fa fa-lock"  aria-hidden="true" style="margin-left: 10px"></i>
-        </h2>
-        {% else %}
         <h2 class="post-title">
             {{ post.title }}
         </h2>
-        {% endif %}
-
         {% if post.subtitle %}
         <h3 class="post-subtitle">
             {{ post.subtitle }}
         </h3>
         {% endif %}
-
-        {% if post.password %}
         <div class="post-content-preview">
-            " 权限不足, 需要输入密钥才能访问 | Unauthorized, Enter Passphrase to unlock "
-            <br/>
-            " 密钥请咨询相关网站管理员 | Please consult the relevant webmaster for the key "
-            <br/>
+            {% if post.lang == 'en' %}
+                {{ post.content | strip_html | truncate:300 }}
+            {% else %}
+                {{ post.content | strip_html | truncate:200 }}
+            {% endif %}
         </div>
-        {% else %}
-
-        {% if post.cover %}
-        <div>
-            <div class="rich-content-cover" style="float: left;height: 115px;width: 120px;">
-                <img class="lazyload" data-original="{{ post.cover }}"
-                     style="width: 115px;height: 115px;padding: 3px;
-                     background: no-repeat center center;cursor: pointer;
-                     background-size: cover; background-attachment: scroll; object-fit: cover" alt="">
-            </div>
-            <div class="post-content-preview" style="">
-                {{ post.content | strip_html | truncate:250 }}
-            </div>
-        </div>
-        {% else %}
-        <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:250 }}
-        </div>
-        {% endif %}
-
-        {% endif %}
-
     </a>
     <p class="post-meta">
-        <i class="fa fa-calendar" style="margin-right: 3px" aria-hidden="true"></i>
-        {{ post.date | date: "%b %-d, %Y" }}
-        <i class="fa fa-eye" style="margin-left: 20px" aria-hidden="true"></i>
-        <span class="post_counter" data-title="{{ post.url }}"></span>
-        <a style="text-decoration: none;" href="{{ post.url | prepend: site.baseurl }}#comment" aria-label="Comment">
-            <i class="fa fa-comment" style="margin-left: 20px" aria-hidden="true"></i>
-            <span class="disqus-comment-count" data-disqus-url="{{ post.url | prepend: site.baseurl }}"></span>
-        </a>
-        {% if post.password %}
-        {% else %}
-        <i class="fa fa-clock-o" style="margin-left: 20px;" aria-hidden="true"></i>
-        {{ post.content | strip_html | strip_newlines | remove: " " | size | divided_by: 350 | plus: 1 }} mins
-        {% endif %}
+        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
     </p>
 </div>
 <hr>
@@ -79,121 +34,12 @@ description: "心之所向"
 <ul class="pager">
     {% if paginator.previous_page %}
     <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Previous Page">&larr; Newer Posts</a>
-    </li>
-    {% else %}
-    <li class="previous" style="visibility: hidden">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Previous Page">&larr; Newer Posts</a>
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
     </li>
     {% endif %}
-
-    {% if paginator.total_pages > 7%}
-    {% assign total = 7%}
-    {% else %}
-    {% assign total = paginator.total_pages %}
-    {% endif %}
-
-
-    {% if total == 1 %}
-    <li class="default-pager">
-        <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}" style="margin-top: 13px" aria-label="Page 1">1</a>
-    </li>
-    {% elsif total <= 7%}
-        {% for page in (1..total) %}
-        {% if page == paginator.page %}
-        <li class="default-pager">
-            <a href="javascript:void(0)" class="active" style="margin-top: 13px" aria-label="Page {{ page }}">{{ page }}</a>
-        </li>
-        {% elsif page == 1%}
-        <li class="default-pager">
-            <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Page 1" style="margin-top: 13px">1</a>
-        </li>
-        {% else %}
-        <li class="default-pager">
-            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" style="margin-top: 13px" aria-label="Page {{ page }}">{{ page }}</a>
-        </li>
-        {% endif %}
-        {% endfor %}
-    {% else %}
-        {% assign totalMinusFour = total | minus: 4 %}
-        {% if paginator.page <= 5 %}
-        {% for page in (1..5) %}
-        {% if page == paginator.page %}
-            <li class="default-pager">
-                <a href="javascript:void(0)" class="active" style="margin-top: 13px" aria-label="Page {{ page }}">{{ page }}</a>
-            </li>
-        {% elsif page == 1%}
-        <li class="default-pager">
-            <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Page 1" style="margin-top: 13px">1</a>
-        </li>
-        {% else %}
-            <li class="default-pager">
-                <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" aria-label="Page {{ page }}" style="margin-top: 13px">{{ page }}</a>
-            </li>
-        {% endif %}
-        {% endfor %}
-        <li class="default-pager">
-            <a href="javascript:void(0)" style="margin-top: 13px" aria-label="...">...</a>
-        </li>
-        <li class="default-pager">
-            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', total }}" aria-label="Page {{ total }}" style="margin-top: 13px">{{ total }}</a>
-        </li>
-        {% elsif paginator.page >= totalMinusFour %}
-            <li class="default-pager">
-                <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Page 1" style="margin-top: 13px">1</a>
-            </li>
-            <li class="default-pager">
-                <a href="javascript:void(0)" aria-label="..." style="margin-top: 13px">...</a>
-            </li>
-            {% for page in (totalMinusFour..total) %}
-            {% if page == paginator.page %}
-            <li class="default-pager">
-                <a href="javascript:void(0)" class="active" aria-label="Page {{ page }}" style="margin-top: 13px">{{ page }}</a>
-            </li>
-            {% else %}
-            <li class="default-pager">
-                <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" aria-label="Page {{ page }}" style="margin-top: 13px">{{ page }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-        {% else %}
-            <li class="default-pager">
-                <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Page 1" style="margin-top: 13px">1</a>
-            </li>
-            <li class="default-pager">
-                <a href="javascript:void(0)" style="margin-top: 13px" aria-label="...">...</a>
-            </li>
-            {% assign pageMinusOne = paginator.page | minus: 1 %}
-            {% assign pagePlusOne = paginator.page | plus: 1 %}
-            {% for page in (pageMinusOne..pagePlusOne) %}
-            {% if page == paginator.page %}
-            <li class="default-pager">
-                <a href="javascript:void(0)" class="active" aria-label="Page {{ page }}" style="margin-top: 13px">{{ page }}</a>
-            </li>
-            {% else %}
-            <li class="default-pager">
-                <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" aria-label="Page {{ page }}" style="margin-top: 13px">{{ page }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-            <li class="default-pager">
-                <a href="javascript:void(0)" style="margin-top: 13px" aria-label="...">...</a>
-            </li>
-            <li class="default-pager">
-                <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', total }}" aria-label="Page {{ total }}" style="margin-top: 13px">{{ total }}</a>
-            </li>
-        {% endif %}
-
-
-    {% endif %}
-
     {% if paginator.next_page %}
     <li class="next">
-        <a rel="prefetch" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Older Posts">Older Posts &rarr;</a>
-    </li>
-    {% else %}
-    <li class="next" style="visibility: hidden">
-        <a rel="prefetch" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" aria-label="Older Posts">Older Posts &rarr;</a>
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
     </li>
     {% endif %}
 </ul>

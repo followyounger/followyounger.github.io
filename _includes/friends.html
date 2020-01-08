@@ -3,7 +3,7 @@
 <h5>FRIENDS</h5>
 <ul class="list-inline">
   {% for friend in site.friends %}
-  <li><a rel="nofollow" style="text-decoration: none" href="{{friend.href}}" aria-label="{{ friend.title }}">{{ friend.title }}</a></li>
+  <li><a href="{{friend.href}}">{{friend.title}}</a></li>
   {% endfor %}
 </ul>
 {% endif %}
