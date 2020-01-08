@@ -10,3 +10,9 @@ weibo_username: huxpro      # 你的微博账号，底部链接会自动更新�
 
 # Build settings
 # paginate: 10              # 一页你准备放几篇文章
+
+
+# Sidebar settings
+sidebar: true  #添加侧边栏
+sidebar-about-description: "简单的描述一下你自己"
+sidebar-avatar: /img/avatar-hux.jpg     #你的大头贴，请使用绝对地址.
