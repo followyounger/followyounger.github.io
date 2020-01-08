@@ -1,0 +1,11 @@
+---
+- name: Always in my heart
+  artist: 山田タマル
+  url: https://server.soptq.me/blog/music/hls/post_namida/1.m3u8
+  cover: https://server.soptq.me/blog/music/hls/post_namida/1.jpg
+  theme: E0D3C6
+- name: Scarborough Fair
+  artist: Sarah Brightman
+  url: https://server.soptq.me/blog/music/hls/post_namida/2.m3u8
+  cover: https://server.soptq.me/blog/music/hls/post_namida/2.jpg
+  theme: 97BCC5

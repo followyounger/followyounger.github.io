@@ -9,6 +9,11 @@ layout: default
 <!-- Post Header -->
 {% include intro-header.html type='keynote' %}
 
+{% if site.disqus_username %}
+<link rel="stylesheet" href="/css/iDisqus.min.css" />
+<script src="/js/iDisqus.min.js"></script>
+{% endif %}
+
 
 <!-- Post Content -->
 <article>
@@ -18,15 +23,16 @@ layout: default
             <!-- Post Container -->
             <div class="post-container
                 col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1 ">
+                col-md-10 col-md-offset-1 animated content-fadeInUp">
 
-				{{ content }}
+                {{ content }}
 
                 <hr style="visibility: hidden;">
+
                 <ul class="pager">
                     {% if page.previous.url %}
                     <li class="previous">
-                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
+                        <a aria-label="Previous Post" href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
                         Previous<br>
                         <span>{{page.previous.title}}</span>
                         </a>
@@ -34,22 +40,17 @@ layout: default
                     {% endif %}
                     {% if page.next.url %}
                     <li class="next">
-                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
+                        <a aria-label="Next Post" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
                         Next<br>
                         <span>{{page.next.title}}</span>
                         </a>
                     </li>
                     {% endif %}
                 </ul>
-                <hr style="visibility: hidden;">
 
                 {% if site.disqus_username %}
                 <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread">
-
-                    </div>
-                </div>
+                <div id="comment"></div>
                 <!-- disqus 评论框 end -->
                 {% endif %}
 
@@ -96,20 +97,20 @@ layout: default
 
 
 {% if site.disqus_username %}
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus_username}}";
-    var disqus_identifier = "{{page.id}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
 
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+<script>
+    var disq = new iDisqus('comment', {
+        forum: 'soptlog',
+        api: 'https://api.soptq.me/disqus/api',
+        site: 'https://soptq.me',
+        identifier: window.location.href.split('?')[0],
+        url: window.location.href.split('?')[0],
+        mode: 1,
+        timeout: 3000,
+        init: true,
+        emojiPreview: true
+    });
 </script>
-<!-- disqus 公共JS代码 end -->
 {% endif %}
 
 

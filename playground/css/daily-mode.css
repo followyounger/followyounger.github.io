@@ -1,0 +1,47 @@
+body {
+    background-color: white;
+}
+
+.navbar-custom.is-fixed{
+    background-color: rgba(255,255,255,0.9);
+    border-color: #f2f2f2;
+}
+
+.navbar-custom.is-fixed .navbar-brand{
+    color: #404040;
+}
+
+.navbar-custom.is-fixed .nav li a{
+    color: #404040;
+}
+
+.navbar-custom .navbar-toggle:active {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.navbar-custom .navbar-toggle .icon-bar {
+    background-color: #404040;
+}
+.navbar-custom .navbar-brand {
+    color: #404040;
+}
+.navbar-custom .nav li a {
+    color: #404040;
+}
+
+@media only screen and (max-width: 767px){
+    .navbar-default .navbar-collapse{
+        background: white;
+    }
+}
+
+hr{
+    border-color: #eee;
+}
+
+header {
+    border-color: #edeeee;
+}
+
+.main > a > div {
+    border-color: #edeeee;
+}

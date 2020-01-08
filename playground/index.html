@@ -1,0 +1,63 @@
+---
+title: Playground
+id: playground
+layout: default
+---
+
+<html class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Soptq - Playground</title>
+		<link rel="stylesheet" type="text/css" href="css/playground.min.css" />
+		<link id="playground-daily-theme" rel="stylesheet" href="css/daily-mode.min.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" data-original-media="(prefers-color-scheme: no-preference), (prefers-color-scheme: light)">
+		<link id="playground-dark-theme" rel="stylesheet" href="css/dark-mode.min.css" media="(prefers-color-scheme: dark)" data-original-media="(prefers-color-scheme: dark)">
+	</head>
+	<body>
+		<script>
+			"use strict";
+			daily_theme_list.push(document.getElementById('playground-daily-theme'));
+			dark_theme_list.push(document.getElementById('playground-dark-theme'));
+
+			if (theme_value === "dark"){
+				loadMode("dark", true);
+			} else {
+				loadMode("daily", true);
+			}
+		</script>
+
+		<div class="container" style="margin:0;padding:0;width:100%;">
+			<header>
+				<img class="lazyload" data-original="images/playground.svg" width="175" height="175" style="background: transparent" alt="">
+				<p>This page stores some of my projects that can be revealed online. Please be awarded that most of them can be very immature.</p>
+			</header>
+			<div class="main animated content-fadeInUp">
+				<a href="{{site.baseurl}}/demo/live2d_demo/" aria-label="Live2d">
+					<div>
+						<img class="lazyload" data-original="images/live2d-demo.jpg" alt="">
+						<p>Live2d</p>
+					</div>
+				</a>
+				<a href="{{site.baseurl}}/demo/canvas_visualizer_demo/" aria-label="Canvas Music Visualizer">
+					<div>
+						<img class="lazyload" data-original="images/canvas-visualizer-demo.jpg" alt="">
+						<p>Canvas Music Visualizer</p>
+					</div>
+				</a>
+				<a href="{{site.baseurl}}/demo/threejs_visualizer_demo/" aria-label="ThreeJS Music Visualizer">
+					<div>
+						<img class="lazyload" data-original="images/threejs-visualizer-demo.jpg.jpg" alt="">
+						<p>ThreeJS Music Visualizer</p>
+					</div>
+				</a>
+				<a href="{{site.baseurl}}/demo/waifu_recognition_demo/" aria-label="Waifu_recognition">
+					<div>
+						<img class="lazyload" data-original="images/waifu-recognition-demo.jpg" alt="">
+						<p>Waifu_recognition</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>

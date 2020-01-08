@@ -23,8 +23,9 @@ function handleRegistration(registration){
       } else {
         console.log('A Visit without previous SW');
         createSnackbar({
-          message: 'App ready for offline use.',
-          duration: 3000
+          message: 'Ready For Offline Use.',
+          actionText:"confirmed",
+          duration: 6000
         })
       }
     };
@@ -43,15 +44,18 @@ if(navigator.serviceWorker){
   // https://dbwriteups.wordpress.com/2015/11/16/service-workers-part-3-communication-between-sw-and-pages/
   navigator.serviceWorker.onmessage = (e) => {
     console.log('SW: SW Broadcasting:', event);
-    const data = e.data
-    
-    if(data.command == "UPDATE_FOUND"){
-      console.log("UPDATE_FOUND_BY_SW", data);
-      createSnackbar({
-        message: "Content updated.",
-        actionText:"refresh",
-        action: function(e){location.reload()}
-      })
+    const data = e.data;
+
+    if (data.command == "UPDATE_FOUND") {
+      setTimeout(function () {
+        createSnackbar({
+          message: "Content Updated.",
+          actionText: "refresh",
+          action: function (e) {
+            location.reload()
+          }
+        })
+      }, 3000);
     }
   }
 }

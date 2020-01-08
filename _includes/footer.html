@@ -1,21 +1,76 @@
 <!-- Footer -->
 <footer>
+    {% if page.immersive %}
+    {% else %}
+    <div class="visible-sm visible-xs short-about" style="position: absolute; left: calc(50% - 50px); top: -50px;">
+        {% if site.sidebar-avatar %}
+        <a href="{{'/about/' | prepend: site.baseurl }}" aria-label="About Me"><img alt="" class="avatar lazyload" data-original="{{site.sidebar-avatar}}"/></a>
+        {% endif %}
+    </div>
+    {% endif %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!-- SNS Link -->
-                {% include sns-links.html center=true %}
-
-                <p class="copyright text-muted">
-                    Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
-                    <br>
-                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="100px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
-                    </iframe>
-                </p>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 footer-flex">
+                {% if page.immersive %}
+                {% else %}
+                <div class="theme-container">
+                    <p>Dark Mode</p>
+                    <div class="theme-toggle">
+                        <div class="line"></div>
+                        <div class="circle">
+                            <div class="rays"></div>
+                        </div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: center; align-items: center">
+                        <input type="checkbox" id="check" name="check" value="" />
+                        <label for="check">
+                            <span><!-- This span is needed to create the "checkbox" element --></span>Remember
+                    </div>
+                </div>
+                {% endif %}
+                <div class="cp-container">
+                    <!-- SNS Link -->
+                    {% include sns-links.html center=true %}
+                    <p class="copyright text-muted" style="line-height: 1.8">
+                        Copyright &copy; 2018 - {{ site.time | date: '%Y' }} {{ site.title }}.
+                        <br>
+                        All rights reserved
+                        {% if page.hide-credit %}
+                        {% else %}
+                        <br>
+                        <img class="lazyload" data-original="https://img.shields.io/github/license/Soptq/Soptq.github.io.svg" alt="license">
+                        <a rel="github" style="text-decoration: none;" href="https://github.com/Soptq/Soptq.github.io/" aria-label="Github">
+                            <img class="lazyload" data-original="https://img.shields.io/github/stars/soptq/Soptq.github.io?style=social" style="margin-left: 10px; height: 20px;" alt="">
+                        </a>
+                        <a rel="license" style="text-decoration: none;" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" aria-label="License">
+                            <img class="lazyload" alt="知识共享许可协议" style="border-width:0; margin-left: 10px; height: 20px; border-radius: 5px" data-original="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/>
+                        </a>
+                        <br>
+                        Powered by Jekyll
+                        <br>
+                        <a target="_blank" rel="nofollow" href="{{'/cms' | prepend: site.baseurl}}" aria-label="CMS">CMS</a>
+                        | <a target="_blank" rel="nofollow" href="https://uptime.soptq.me" aria-label="Status">Status</a>
+                        | <a target="_blank" rel="nofollow" href="https://server.soptq.me/down" aria-label="Files">Files</a>
+                        | <a target="_blank" rel="nofollow" href="https://server.soptq.me/aria" aria-label="Aria">Aria</a>
+                        | <a target="_blank" rel="nofollow" href="https://server.soptq.me/gogs" aria-label="Gogs">Gogs</a>
+                        {% endif %}
+                        <br>
+                        <style>@keyframes beatHeart{0%{transform:scale(1)}25%{transform:scale(1.1)}40%{transform:scale(1)}100%{transform:scale(1)}}.cp-container .fa-heart:hover{animation:.8s infinite beatHeart;cursor: pointer}</style>
+                        Made with <i class="fa fa-heart throb" style="color:#d43f57;padding:0 5px"></i> by Soptq.
+                    </p>
+                    {% if page.hide-credit %}
+                    {% else %}
+                    <div id="gh-copyright">
+                        <p class="copyright text-muted" style="line-height: 1.8">
+                            Proudly hosted by
+                            <a rel="nofollow" href="https://github.com" aria-label="Github">
+                                <img class="lazyload" data-original="https://jekyllrb.com/img/footer-logo.png" width="100" height="30" alt="GitHub • Social coding">
+                            </a>
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -23,82 +78,297 @@
 
 <!-- jQuery -->
 <script src="{{ "/js/jquery.min.js " | prepend: site.baseurl }}"></script>
-
 <!-- Bootstrap Core JavaScript -->
-<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
 <script src="{{ "/js/bootstrap.min.js " | prepend: site.baseurl }}"></script>
-
 <!-- Custom Theme JavaScript -->
 <script src="{{ "/js/hux-blog.min.js " | prepend: site.baseurl }}"></script>
-
+<script>var createSnackbar=(function(){var a=null;return function(b){var j=b.message,f=b.actionText,d=b.action,c=b.duration,g=b.mode;if(a){a.dismiss()}var i=document.createElement("div");i.className="paper-snackbar";if(g==="error"){i.classList.add("snackbar-error")}if(g==="warning"){i.classList.add("snackbar-warning")}if(g==="success"){i.classList.add("snackbar-suc")}i.dismiss=function(){this.style.opacity=0};var h=document.createTextNode(j);i.appendChild(h);if(f){if(!d){d=i.dismiss.bind(i)}var e=document.createElement("button");e.className="rkmd-btn btn-flat ripple-effect";e.innerHTML=f;e.addEventListener("click",d);i.appendChild(e)}setTimeout(function(){if(a===this){a.dismiss()}}.bind(i),c||5000);i.addEventListener("transitionend",function(l,k){if(l.propertyName==="opacity"&&this.style.opacity==0){this.parentElement.removeChild(this);if(a===this){a=null}}}.bind(i));a=i;document.body.appendChild(i);getComputedStyle(i).bottom;i.style.bottom="0px";i.style.opacity=1}})();</script>
 <!-- Service Worker -->
 {% if site.service-worker %}
-<script src="{{ "/js/snackbar.js " | prepend: site.baseurl }}"></script>
 <script src="{{ "/js/sw-registration.js " | prepend: site.baseurl }}"></script>
 {% endif %}
+<!--fancybox-->
+{% if site.enable_fancybox and page.title != "Demo"  %}
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css" />
+<script async type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+{% endif%}
 
 <!-- async load function -->
 <script>
+    function showSpoiler(obj){
+        obj.classList.toggle('show');
+        obj.classList.toggle('noselect');
+    }
+
     function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        o.async = true;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+
+    function asyncs(us, c) {
+        let l = 0;
+        let m = () => {
+            l++;
+            if (l >= us.length) {
+                c.call(this, arguments)
+            }
+        };
+        for (let u of us) {
+            async(u, m);
+        }
     }
 </script>
 
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
+{% if site.enable_heatmap %}
+{% if page.id == "index" or page.id == "portfolio" %}
+<style>.cal-heatmap-container{display:block}.graph{font-family:"Lucida Grande",Lucida,Verdana,sans-serif}.graph-label{fill:#999;font-size:10px}.graph,.graph-legend rect{shape-rendering:crispedges}.graph-rect{fill:#ededed}.graph-subdomain-group rect:hover{stroke:#000;stroke-width:1px}.subdomain-text{font-size:8px;fill:#999;pointer-events:none}.hover_cursor:hover{cursor:pointer}.qi{background-color:#999;fill:#999}.q1{background-color:#dae289;fill:#dae289}.q2{background-color:#cedb9c;fill:#9cc069}.q3{background-color:#b5cf6b;fill:#669d45}.q4{background-color:#637939;fill:#637939}.q5{background-color:#3b6427;fill:#3b6427}rect.highlight{stroke:#444;stroke-width:1}text.highlight{fill:#444}rect.now{stroke:red}text.now{fill:red;font-weight:800}.domain-background{fill:none;shape-rendering:crispedges}.ch-tooltip{padding:10px;background:#222;color:#bbb;font-size:12px;line-height:1.4;width:140px;position:absolute;z-index:99999;text-align:center;border-radius:2px;box-shadow:2px 2px 2px rgba(0,0,0,0.2);display:none;box-sizing:border-box}.ch-tooltip::after{position:absolute;width:0;height:0;border-color:transparent;border-style:solid;content:"";padding:0;display:block;bottom:-6px;left:50%;margin-left:-6px;border-width:6px 6px 0;border-top-color:#222}</style>
+<script>
+    async("https://d3js.org/d3.v3.min.js", function () {
+       async("https://cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js", function () {
+           {% if page.id == "index" %}
+           jQuery(document).ready(function($) {
+               var cal, current_cal_year;
+               cal = new CalHeatMap();
+               current_cal_year = {{ site.time | date: '%Y' }};
+               cal.init({
+                   itemSelector: "#heatmap",
+                   domain: "month",
+                   subDomain: "x_day",
+                   data: "/heatmap.json",
+                   cellSize: 10,
+                   start: new Date(current_cal_year, 0, 1),
+                   range: 12,
+                   verticalOrientation: true,
+                   domainDynamicDimension: false,
+                   label: {
+                       position: "right",
+                       rotate: "left",
+                       offset: {
+                           x: 0,
+                           y: 15
+                       }
+                   },
+                   legend: [1, 2],
+                   highlight: ["now"],
+                   tooltip: true,
+                   itemName: ["post", "posts"]
+               });
+               window.scrollCal = function(obj, year) {
+                   if (year > current_cal_year){
+                       cal.next((year - current_cal_year) * 12);
+                       document.getElementsByClassName("enabled")[0].classList.remove("enabled");
+                       obj.classList.add("enabled");
+                   } else {
+                       cal.previous((current_cal_year - year) * 12);
+                       document.getElementsByClassName("enabled")[0].classList.remove("enabled");
+                       obj.classList.add("enabled");
+                   }
+                   current_cal_year = year;
+               };
+           });
+           {% endif %}
+           {% if page.id == "portfolio" %}
+           jQuery(document).ready(function($) {
+               "use strict";
+               let scheduledAnimationFrame = false;
+               function showCalScrollHelper(){
+                   if (document.getElementById('github-heatmap').clientWidth
+                       < document.querySelector('svg.cal-heatmap-container').getAttribute('width')) {
+                       if (document.getElementsByClassName("cal-scroll-helper")[0].classList.contains('hidden')) {
+                           document.getElementsByClassName("cal-scroll-helper")[0].classList.remove('hidden');
+                       }
+                   } else {
+                       if (!document.getElementsByClassName("cal-scroll-helper")[0].classList.contains('hidden')) {
+                           document.getElementsByClassName("cal-scroll-helper")[0].classList.add('hidden');
+                       }
+                   }
+                   scheduledAnimationFrame = false;
+               }
+               function calinit(){
+                   const cal = new CalHeatMap();
+                   let parser = function(data) {
+                       let stats = {};
+                       for (let d in data) {
+                           if (data[d].intensity !== 0) {
+                               stats[new Date(data[d].date.split("-")[1] + "/" + data[d].date.split("-")[2] + "/" +
+                                   data[d].date.split("-")[0]).getTime() / 1000] = data[d].intensity;
+                           }
+                       }
+                       return stats;
+                   };
+                   cal.init({
+                       itemSelector: "#github-heatmap",
+                       domain: "month",
+                       data: JSON.parse(localStorage.githubHeatData)['contributions'],
+                       afterLoadData: parser,
+                       start: new Date(new Date().getFullYear() - 1, new Date().getMonth() + 2, 1),
+                       range: 12,
+                       highlight: ["now"],
+                       legend: [1, 2, 3]
+                   });
+                   document.querySelector('#github-heatmap').classList.add('animated', 'fadeIn');
+                   setTimeout(function () {
+                       const infoLabel = `<text class="graph-label animated fadeIn" y="122" x="164" text-anchor="middle"
+                                    dominant-baseline="middle">Github Contribution Heatmap of This Year</text>`;
+                       document.querySelector('svg.cal-heatmap-container').innerHTML += infoLabel;
+                       window.addEventListener('resize', function () {
+                           if (scheduledAnimationFrame){
+                               return;
+                           }
+                           scheduledAnimationFrame = true;
+                           requestAnimationFrame(showCalScrollHelper);
+                       });
+                       showCalScrollHelper();
+                   }, 1000);
+               }
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
-     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
-
+               if (localStorage.githubHeatDataUpdate === undefined ||
+                   Math.floor(new Date().getTime() - parseInt(localStorage.githubHeatDataUpdate)) / (1000 * 60 * 60 * 24) > 1){
+                   let xhr = new XMLHttpRequest();
+                   xhr.open('get', "https://api.soptq.me/contribution", true);
+                   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                   xhr.onreadystatechange = function(){
+                       if(xhr.readyState === 4){
+                           if(xhr.status === 200){
+                               localStorage.githubHeatData = xhr.responseText;
+                               localStorage.githubHeatDataUpdate = new Date().getTime();
+                               calinit();
+                           }
+                       }
+                   };
+                   xhr.send();
+               } else {
+                   calinit();
+               }
+           });
+           {% endif %}
+       })
+    });
+</script>
+{% endif %}
+{% endif %}
 
 {% if page.title == 'Archive' %}
 <!-- jquery.tagcloud.js -->
 <script>
-    async('{{ "/js/jquery.tagcloud.js" | prepend: site.baseurl }}',function(){
-        $.fn.tagcloud.defaults = {
-            //size: {start: 1, end: 1, unit: 'em'},
-            color: {start: '#bbbbee', end: '#2f93b4'},
-        };
-        $('#tag_cloud a').tagcloud();
-    })
+    async('{{ "/js/jquery.tagcloud.min.js" | prepend: site.baseurl }}',function(){
+         $.fn.tagcloud.defaults = {
+             //size: {start: 1, end: 1, unit: 'em'},
+             color: {start: '#bbbbee', end: '#2f93b4'},
+         };
+         $('#tag_cloud a').tagcloud();
+     })
 </script>
-<script src='{{ "/js/archive.js " | prepend: site.baseurl }}'></script>
-{% endif %}
 
+<script src='{{ "/js/archive.js " | prepend: site.baseurl }}'></script>
+ {% endif %}
 <!--fastClick.js -->
 <script>
-    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    async("//cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
+</script>
+
+<script>
+    "use strict";
+    $('.theme-container #check').on('change', () => {
+        localStorage.setItem('autoremember', 'false');
+        if (document.querySelector('.theme-container #check').checked) {
+            localStorage.setItem('theme_remember', 'true');
+        } else {
+            localStorage.setItem('theme_remember', 'false');
+        }
+    });
+    $('.theme-toggle').on('click',() => {
+        if (theme_value === "dark"){
+            loadMode("daily");
+            setTimeout(function () {
+                createSnackbar({
+                    message: 'Light Mode Activated Manually',
+                    actionText:"ok",
+                    duration: 1000
+                });
+            }, 500);
+        } else {
+            loadMode("dark");
+            setTimeout(function () {
+                createSnackbar({
+                    message: 'Dark Mode Activated Manually',
+                    actionText:"ok",
+                    duration: 1000
+                });
+            }, 500);
+        }
+        if (localStorage.getItem('autoremember') !== "false") {
+            if (!document.querySelector('.theme-container #check').checked) {
+                $('.theme-container #check').click();
+            }
+        }
+        {% if page.id != "index" %}
+        if (typeof(disq) !== "undefined" && disq.stat.current == "disqus") {
+            disq = new iDisqus('comment', {
+                forum: 'soptlog',
+                api: 'https://api.soptq.me/disqus/api',
+                site: 'https://soptq.me',
+                mode: 1,
+                timeout: 3000,
+                init: true,
+                emojiPreview: true
+            });
+        }
+        {% endif %}
+    });
+    if (hasNativePrefersColorScheme) {
+        window.addEventListener('colorschemechange', (e) => {
+            loadMode(e.detail.colorScheme);
+        });
+    }
+    window.addEventListener('themeloadend', (e) => {
+        if (e.detail.mode === "daily") {
+            if ($('.theme-container').hasClass('clicked')) {
+                $('.theme-container').removeClass('clicked');
+            }
+        } else {
+            if (!$('.theme-container').hasClass('clicked')) {
+                $('.theme-container').addClass('clicked');
+            }
+        }
+    });
+    if (theme_value === "dark"){
+        $('.theme-container').toggleClass('clicked');
+        if (sessionStorage.getItem('disautonoti') !== 'true') {
+            createSnackbar({
+                message: 'Dark Mode Activated Automatically',
+                actionText:"Turn Off",
+                duration: 3000,
+                action: function (e) {
+                    $('.theme-toggle').click();
+                }
+            });
+            sessionStorage.setItem('disautonoti', 'true');
+        }
+    }
+    if (!theme_remember_value) {
+        localStorage.setItem('theme_remember', 'false');
+    } else {
+        document.querySelector('.theme-container #check').checked = theme_remember_value === "true";
+    }
 </script>
 
 
 <!-- Google Analytics -->
 {% if site.ga_track_id %}
 <script>
+    "use strict";
     // dynamic User by Hux
-    var _gaId = '{{ site.ga_track_id }}';
-    var _gaDomain = '{{ site.ga_domain }}';
+    let _gaId = '{{ site.ga_track_id }}';
+    let _gaDomain = '{{ site.ga_domain }}';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -111,50 +381,30 @@
 </script>
 {% endif %}
 
-
-<!-- Baidu Tongji -->
-{% if site.ba_track_id %}
-<script>
-    // dynamic User by Hux
-    var _baId = '{{ site.ba_track_id }}';
-
-    // Originial
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?" + _baId;
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-{% endif %}
-
-
 <!-- Side Catalog -->
-{% if page.catalog %}
+{% if page.catalog or page.title == "CMS"%}
 <script type="text/javascript">
     function generateCatalog (selector) {
-
-        // interop with multilangual 
+        // interop with multilangual
         if ('{{ page.multilingual }}' == 'true') {
             _containerSelector = 'div.post-container.active'
         } else {
             _containerSelector = 'div.post-container'
         }
-
         // init
         var P = $(_containerSelector),a,n,t,l,i,c;
         a = P.find('h1,h2,h3,h4,h5,h6');
 
         // clean
-        $(selector).html('')
+        $(selector).html('');
 
         // appending
         a.each(function () {
             n = $(this).prop('tagName').toLowerCase();
+            if ($(this).text() !== $(this).prop('id')) $(this).attr('id', decodeURI($(this).prop('id')));
             i = "#"+$(this).prop('id');
             t = $(this).text();
-            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            c = $('<a href="'+i+'" rel="nofollow" aria-label="'+t+'">'+t+'</a>');
             l = $('<li class="'+n+'_nav"></li>').append(c);
             $(selector).append(l);
         });
@@ -162,19 +412,25 @@
     }
 
     generateCatalog(".catalog-body");
+    generateCatalog(".mobile-catalog-body");
 
     // toggle side catalog
     $(".catalog-toggle").click((function(e){
         e.preventDefault();
-        $('.side-catalog').toggleClass("fold")
-    }))
+        $('.side-catalog').toggleClass("fold");
+    }));
+
+    $(".mobile-catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.mobile-catalog').toggleClass("fold");
+    }));
 
     /*
      * Doc: https://github.com/davist11/jQuery-One-Page-Nav
      * Fork by Hux to support padding
      */
-    async("{{ '/js/jquery.nav.js' | prepend: site.baseurl }}", function () {
-        $('.catalog-body').onePageNav({
+    async("{{ '/js/jquery.nav.min.js' | prepend: site.baseurl }}", function () {
+        $('.catalog-body, .mobile-catalog-body').onePageNav({
             currentClass: "active",
             changeHash: !1,
             easing: "swing",
@@ -191,6 +447,34 @@
 </script>
 {% endif %}
 
+{% if page.id != "search" %}
+<script>
+    function onKeyPress(e) {
+        var keyCode = null;
+        if(e.which)
+            keyCode = e.which;
+        else if(e.keyCode)
+            keyCode = e.keyCode;
+        if(keyCode == 13) {
+            location.href="/search/?q=" + document.getElementById('search-input').value;
+            return false;
+        }
+        return true;
+    }
+    async('{{ "/js/simple-jekyll-search.min.js" | prepend: site.baseurl }}', function () {
+        if (window.location.href.indexOf('search/?q') <= 0){
+            SimpleJekyllSearch({
+                searchInput: document.getElementById('search-input'),
+                resultsContainer: document.getElementById('results-container'),
+                json: '/search.json',
+                searchResultTemplate: '<li><a href="{url}" style="display:block;width: 100%;padding-left:10px; padding-right:10px;" aria-label="{title}"><i class="fa fa-angle-double-right fa-border" aria-hidden="true"></i>    {title}</a></li>',
+                noResultsText: '',
+                fuzzy: false
+            });
+        }
+    })
+</script>
+{% endif %}
 
 <!-- Multi-Lingual -->
 {% if page.multilingual %}
@@ -205,14 +489,14 @@
     function getLang() { return new URLSearchParams(document.location.search).get("lang") }
 
     function setLang(newLang) {
-        var params = new URLSearchParams(document.location.search)
-        params.set("lang", newLang)
+        var params = new URLSearchParams(document.location.search);
+        params.set("lang", newLang);
         document.location.search = params.toString()  // refresh.
     }
 
     // handle render
     function _render(){
-        var lang = getLang()
+        var lang = getLang();
         // en
         if(lang == "en"){
             $select.selectedIndex = 1;
@@ -220,7 +504,7 @@
             $en.classList.add("active");
             $zh.style.display = "none";
             $zh.classList.remove("active");
-        // default to zh-cn
+            // default to zh-cn
         }else{
             $select.selectedIndex = 0;
             $zh.style.display = "block";
@@ -228,7 +512,7 @@
             $en.style.display = "none";
             $en.classList.remove("active");
         }
-        // interop with catalog 
+        // interop with catalog
         if ("{{ page.catalog }}") generateCatalog(".catalog-body");
     }
 
@@ -246,3 +530,140 @@
     _render();
 </script>
 {% endif %}
+
+<!--aplayer-->
+{% if page.aplayer %}
+<link rel='stylesheet' href='//cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css'/>
+{% include aplayer.html %}
+<script>
+    asyncs([
+        "https://cdn.jsdelivr.net/npm/hls.js@0.12.4/dist/hls.min.js",
+        "https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"
+    ], init_aplayer)
+</script>
+{% endif %}
+
+{% if page.id == "index" or page.id == "about" %}
+<!--  Get Words  -->
+{% assign word-count = 0 %}
+{% for post in site.posts %}
+{% if post.password %}
+{% assign single_count = 0 %}
+{% else %}
+{% assign single_count = post.content | strip_html | strip_newlines | remove: " " | size %}
+{% assign word-count = word-count | plus: single_count %}
+{% endif %}
+{% endfor %}
+<!--{% if count > 10000 %}-->
+<!--{{ count | divided_by: 10000 }} 万 {{ count | modulo: 10000 }}-->
+<!--{% else %}-->
+<!--{{ count }}-->
+<!--{% endif %}-->
+
+<!--  Get tags-->
+{% assign tag-count = 0 %}
+{% for tag in site.tags %}
+{% assign tag-count = tag-count | plus: 1 %}
+{% endfor %}
+
+<script>
+    "use strict";
+    (function () {
+        const THEDATE = new Date("Wed Jan 01 2020 00:00:00 GMT+0800 (CST)").getTime()
+        setInterval(function () {
+            let t_diff = new Date().getTime() - THEDATE
+            let t_day = Math.floor(t_diff / (1000 * 3600 * 24))
+            t_diff = t_diff - t_day * (1000 * 3600 * 24)
+            let t_hour = Math.floor(t_diff / (1000 * 3600))
+            t_diff = t_diff - t_hour * (1000 * 3600)
+            let t_min = Math.floor(t_diff / 60000)
+            t_diff = t_diff - t_min * 60000
+            let t_sec = Math.floor(t_diff / 1000)
+            document.getElementById('us_timer').innerHTML = t_day + " : " + ("0" + t_hour).slice(-2) +
+                " : " + ("0" + t_min).slice(-2) + " : " + ("0" + t_sec).slice(-2)
+        }, 1000);
+
+        const posts_countUp = new CountUp('posts-counter', {{ site.posts.size }})
+        const words_countUp = new CountUp('words-counter', {{ word-count | divided_by: 1000}}, { suffix: 'K' });
+        const tags_countUp = new CountUp('tags-counter', {{ tag-count }})
+        const portfolio_countUp = new CountUp('portfolio-counter', 4 )
+
+        setTimeout(function () {
+            if (!posts_countUp.error) {
+                posts_countUp.start();
+            } else {
+                console.error(posts_countUp.error);
+                document.getElementById('posts-counter').innerText = "{{ site.posts.size }}";
+            }
+            if (!words_countUp.error) {
+                words_countUp.start();
+            } else {
+                console.error(words_countUp.error);
+                document.getElementById('words-counter').innerText = "{{ word-count | divided_by: 1000}}K";
+            }
+            if (!tags_countUp.error) {
+                tags_countUp.start();
+            } else {
+                console.error(tags_countUp.error);
+                document.getElementById('tags-counter').innerText = "{{ tag-count }}";
+            }
+            if (!portfolio_countUp.error) {
+                portfolio_countUp.start();
+            } else {
+                console.error(portfolio_countUp.error);
+                document.getElementById('portfolio-counter').innerText = "{{ site.portfolio_count }}";
+            }
+        }, 1000);
+        if (sessionStorage.getItem('viewers_count') == null) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('get', "https://api.soptq.me/counter/getTotalViews.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status === 200){
+                        let json = JSON.parse(xhr.responseText);
+                        if (json['code'] === 200){
+                            sessionStorage.setItem('viewers_count', json['views']);
+                            const viewers_countUp = new CountUp('viewers-counter', json['views'] );
+                            if (!viewers_countUp.error) {
+                                viewers_countUp.start();
+                            } else {
+                                console.error(viewers_countUp.error);
+                            }
+                        }else {
+                            document.getElementById('viewers-counter').innerHTML = "N/A";
+                            createSnackbar({
+                                message: 'Failed To Fetch Data From Server',
+                                actionText:"ok",
+                                duration: 3000,
+                                mode: 'error'
+                            });
+                        }
+                    }
+                }
+            };
+            xhr.send();
+        } else {
+            const viewers_countUp = new CountUp('viewers-counter', parseInt(sessionStorage.getItem('viewers_count')));
+            if (!viewers_countUp.error) {
+                viewers_countUp.start();
+            } else {
+                console.error(viewers_countUp.error);
+            }
+        }
+    })();
+</script>
+{% endif %}
+
+<!-- add support for d3 -->
+{% if page.d3 %}
+<script async src="//d3js.org/d3.v3.min.js" onload="window.dispatchEvent(new Event('soptlog_d3_loaded'));"></script>
+{% endif %}
+
+<script>
+    var gather=document.getElementsByClassName("post_counter");var len=gather.length;var base_url="https://api.soptq.me/counter/getAllViews.php";var update_base_url="https://api.soptq.me/counter/updateViews.php";var url;(function(){var a=new XMLHttpRequest();a.open("get",base_url,true);a.setRequestHeader("Content-Type","application/x-www-form-urlencoded");a.onreadystatechange=function(){if(a.readyState===4){if(a.status===200){var c=JSON.parse(a.responseText);if(c.code===200){for(var b=0;b<len;++b){var d=gather[b].getAttribute("data-title");gather[b].innerText=c[d]}}}}};a.send()})();function getCookie(d){var b=d+"=";var a=document.cookie.split(";");for(var e=0;e<a.length;e++){var f=a[e].trim();if(f.indexOf(b)===0){return f.substring(b.length,f.length)}}return undefined}function updateViews(a){if(getCookie(a)===undefined){let expireTime=new Date(new Date().getTime()+5*60*1000).toUTCString();document.cookie=a+"=1;expires="+expireTime;url=update_base_url+"?t="+a+"&id=0";let xhr=new XMLHttpRequest();xhr.open("get",url,true);xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");xhr.send()}};
+</script>
+{% if page.layout == 'post' %}
+<script>updateViews('{{ page.url }}');</script>
+{% endif %}
+

@@ -1,0 +1,142 @@
+---
+layout:     post
+title:      “更好的 APP，更少的代码 ：SwiftUI”
+subtitle:   “开始使用Swift的最佳时机”
+date:       2019-6-4
+author:     “Soptq”
+header-img: "img/post_wwdc2019.jpg"
+catalog:    true
+d3:         false
+password:   false
+mathjax:    false
+mermaid:    false
+cover:      "/img/in-post/post_wwdc_2019/cover.jpg"
+tags:
+    - wwdc
+    - swift
+---
+
+### 引
+
+Apple 的产品对于我而言，软件比硬件更有吸引力。如果说硬件是打基础的话，软件则是装修。硬件是天花板，但没有软件一切都等于 0 。昨天晚上看 WWDC2019 看到 3 点半，除了tvOS 以外，每个 OS 都给了我眼前一亮的感觉，像 macOS 的 Sidecar （ RIP Duet Display ），iOS 的 Darkmode， ARkit3 ，watchOS 的噪音检测，全新的 “watch Store”，以及全新的 ipadOS 系统。这些都是 Apple 为用户们优化的体验，似乎开发者还是以前的开发者，除了新增了几个 API 以外。但是，今年的 WWDC 大会主题是 “Write code. Blow minds.”，WWDC 也果然还是一个开发者大会，随即发布的 Project Catalyst 以及 SwiftUI 彻底点燃了整个会场。整个 2 个半小时下来，最让我有感觉的，还是 SwiftUI 。
+
+### SwiftUI 给我们带来了什么
+
+#### 声明性语法 （ Declarative Syntax ）
+
+与 UIkit 不同，SwiftUI 用声明性的语法来很简单的声明界面的逻辑。比如说如果你想写一个列表的话，使用 SwiftUI 一切都可以在代码里面单独进行声明，包括间距，字体，颜色，甚至动画等等。
+
+```swift
+import SwiftUI
+
+struct Content : View {
+
+	@state var model = Themes.listModel
+
+	var body: some View {
+		List(model.items, action: model.selectItem) { item in
+			Image(item.image)
+			Vstack(alignment: .lending) {
+				Text(item.title)
+				Text(item.subtitle)
+					.color(.gray)
+				}
+			}
+		}
+}
+```
+
+上面这几行代码就描述了一个列表，我不知道你们的感觉是什么，我第一眼看到这几行代码，有种看 CSS 的感觉。从这几行写列表的代码来看，主要的工作都是描述控件的内容，这对写代码的人以及读代码的人都是极好的。但是写这么一点代码不代表最后就只有这一点代码，Xcode 会自动加入支持 Darkmode 的代码，根据不同的构建设备生成不同的控件。这一内容我们先放在这里，等下再说。
+
+#### 设计工具
+
+{% include extensions/lazyload.html img='/img/in-post/post_wwdc_2019/4.png' %}
+
+Xcode 11 引入了全新的设计工具，将面向对象编程某种程度上简化成了面向鼠标编程。在这个设计工具中，创建一个新的用户界面只需要操作鼠标对控件进行拖动定位，而不需要写任何代码。你在设计工具中做的每一步都将实时与编辑器中的代码同步，同样，你在代码中写的任何代码都将实时在设计工具中显示。Xcode 会实时编译你的代码，所以你在也不需要等待编译运行到虚拟机了，现在用鼠标点击一下运行按钮，就可立即开始与界面交互。
+
+#### 跨平台
+
+SwiftUI 原生支持所有的 Apple 设备，所以现在你编写一份代码，就可以编译到所有的 Apple 平台中。SwiftUI 及其原生又极其强大，使用 SwiftUI 开发的 APP 可以在很少的代码量下实现部署最新的技术。
+
+### SwiftUI
+
+#### 所有的界面，只需描述一次。
+
+一次描述界面下的所有内容和布局后，SwiftUI 就会知道什么时候应该更新界面重新渲染。
+
+```swift
+List(landmarks) { landmark in
+	HStack {
+		Image(landmark.thumbnail)
+		Text(landmark.name)
+		Spacer()
+
+		if landmark.isFavorite{
+			Image(systemName: "star.fill")
+				.foregroundColor(.yellow)
+		}
+	}
+}
+```
+
+{% include extensions/lazyload.html img='/img/in-post/post_wwdc_2019/1.png' %}
+
+#### 创建可以重复利用的空间
+
+将多个小控件组合成为一个大控件，并在不同的 App 中分享。
+
+```swift
+struct FeatureCard: View {
+	var landmark: Landmark
+
+	var body: some View {
+		landmark.featureImage
+			.resizable()
+			.aspectRatio(3/2, contentMode: .fit)
+			.overlay(TextOverlay(landmark))
+		}
+}
+```
+
+{% include extensions/lazyload.html img='/img/in-post/post_wwdc_2019/2.png' %}
+
+
+#### 简化你的动画
+
+现在只需要一步就可以创建顺滑的动画，SwiftUI 会在需要的时候自动计算偏移。
+
+```swift
+VStack {
+	Badge()
+		.frame(width: 300, height: 300)
+		.animation(.basic())
+	Text(name)
+		.font(.title)
+		.animation(Animation.basic().delay(0.25))
+}
+```
+
+{% include extensions/lazyload.html img='/img/in-post/post_wwdc_2019/3.png' %}
+
+### SwiftUI 意味着什么
+
+首先，上述所有的例子都是来自于 Apple 开发者网页，我只是做了一个简单的翻译。我本来是想去操作一下看看的，但是操作需要 Xcode 11 ，Xcode 11 又需要 macOS 10.15 beta。鉴于目前我正在使用的 Macbook Pro 正在用于生产，所以还是放弃了去操作一下的想法。不过我们可以通过官方给的例子来窥探一下未来。
+
+众所周知，Apple 的所有产品都以 “简即为上” 为要旨。从乔布斯时代把 iPad 交给小孩看他能不能自然而然的上手来鉴定设计是否成功到现在，Apple 一直在通过自身的努力来尽可能的避免用户初次上手产品时的疑惑与犹豫。现在，这样的简化终于来到 Swift 上了。
+
+就以官方给的创建一个列表为例子，使用  Swift 4.0 我们除了绑定数据以外，还需要注册列表，实现一些代理方法，完整代码70，80行，真正与数据有关的代码只有几行。而且在 Swift 4.0 时代， Swift 作为一个代码语言界的新人，其主要目的还是粘合 Object-C ，故其可以调用 Object-C 编写的函数。但是这样肯定是不对的。我们拿 UITableView 中的一个代理函数作为例子：
+
+```swift
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "CellID", for: indexPath))
+        ...
+        return cell
+    }
+```
+
+以我第一眼看到这个函数的感受为例子，我的感受是：疑惑。因为 Swift 是一个十分优雅的语言，就像 Apple 的设计语言一样。而这个函数给我的感觉是十分的混乱的。究其原因，是因为 UIkit 是用 Object-C 写的。而 SwiftUI 生来的目的，就是为了统一 Swift 编程的一致度。使用 SwiftUI 编写的列表，不用实现任何代理函数，绑定每一个数据就像写网页一样的简单。一切的繁琐工作，由 Xcode，在后台，为你解决。
+
+而 SwiftUI 的可理解性更是极为优秀的。请你们返回上面，去看看那几个实例代码，你会发现，就算你没有学过 Swift，你也基本上可以看得懂，甚至你会觉得： 我也能写。这就是 Apple 的魅力，他总是通过一些方法，将一个行业的门槛降到极低。今年 WWDC 有一名中国的 15 岁开发者受邀前往，他通过自学 Swift 完成了一款叫做 Cryptography & Privacy 的应用并获得了奖学金。这让我不禁想到了我 15 岁那个时候学的语言：Pascal。我到现在都还不太清楚 Pascal 是如何写递归的，繁琐的函数关键字，难以理解的各种概念，使我最终放弃了 Pascal，转战 C++。而 C++ 的 STL 库在我学的第一天就彻底震惊了我。我非常能够理解一门简单而强大的语言是多么能够给开发者提供动力。可以预见在 SwiftUI 发布的将来，会有越来越多的人在创建应用程序时选择将 Swift 作为第一语言。也会有越来越多的人加入开发者这个行列。因为写程序的快感，堪比创造世界的快感，是其他行业极难，甚至永远也体会不到的。
+
+现在，就坐等 Xcode 11 正式版的发布吧。
+

@@ -5,17 +5,189 @@
 
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
+<script src='https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js'></script>
+<script>
+    "use strict";
+    let alert = (...params) => console.error(...params);
+    const hasNativePrefersColorScheme =
+        window.matchMedia('(prefers-color-scheme)').media !== 'not all';
+    let theme_value = localStorage.getItem('theme'),
+        theme_remember_value = localStorage.getItem('theme_remember'),
+        daily_theme_list = [], dark_theme_list = [];
+    daily_theme_list.push(document.getElementById('daily-theme'));
+    dark_theme_list.push(document.getElementById('dark-theme'));
+    let loadMode = function(mode, skipAnimation = false) {
+        if (mode !== "daily" && mode !== "dark") return;
+        if (!skipAnimation) {
+            document.getElementsByTagName('body')[0].classList.add('global-transition');
+        }
+        daily_theme_list.forEach((obj) => {
+            if (mode === "daily") {
+                if (obj.hasAttribute('disabled')) {
+                    obj.removeAttribute('disabled');
+                }
+                obj.setAttribute('media', 'all');
+            } else {
+                obj.setAttribute('disabled', '');
+                obj.setAttribute('media', obj.getAttribute('data-original-media'));
+            }
+        });
+        dark_theme_list.forEach((obj) => {
+            if (mode === "daily") {
+                obj.setAttribute('disabled', '');
+                obj.setAttribute('media', obj.getAttribute('data-original-media'));
+            } else {
+                if (obj.hasAttribute('disabled')) {
+                    obj.removeAttribute('disabled');
+                }
+                obj.setAttribute('media', 'all');
+            }
+        });
+        localStorage.setItem('theme', mode);
+        theme_value = mode;
+        dispatchEvent(new CustomEvent("themeloadend", {
+            detail: {mode: mode}
+        }));
+        setTimeout(function () {
+            if (!skipAnimation) {
+                document.getElementsByTagName('body')[0].classList.remove('global-transition');
+            }
+        }, 300);
+    };
+    if (hasNativePrefersColorScheme) {
+        window.matchMedia('(prefers-color-scheme: dark)').addListener(({matches}) => {
+            console.log(matches);
+            if (localStorage.getItem('theme_remember') === "false") {
+                dispatchEvent(new CustomEvent("colorschemechange", {
+                    detail: {colorScheme: (matches ? "dark" : "daily")}
+                }));
+            }
+        });
+        if (!!theme_remember_value && theme_remember_value === "true") {
+            loadMode(theme_value, true);
+        } else {
+            if ((window.matchMedia('(prefers-color-scheme: light)').matches) ||
+                (window.matchMedia('(prefers-color-scheme: no-preference)').matches)) {
+                loadMode('daily', true);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                loadMode('dark', true);
+            }
+        }
+    } else {
+        if (!!theme_remember_value && !!theme_value && theme_remember_value === "true") {
+            loadMode(theme_value, true);
+        } else {
+            let time = new Date();
+            if (time.getHours() <= 6 || time.getHours() >= 23){
+                loadMode("dark", true);
+            } else {
+                loadMode("daily", true);
+            }
+        }
+    }
+    NProgress.configure({ showSpinner: false });
+    NProgress.start();
+    const nprogress_interval = setInterval(function() { NProgress.inc(); }, 1000);
+</script>
 
     {% include nav.html %}
 
+
+
     {{ content }}
+
+
 
     {% include footer.html %}
 
-
+<script>
+    "use strict";
+    function animateCSS(node, animationName, callback) {
+        node.classList.add('animated', animationName);
+        function handleAnimationEnd() {
+            node.classList.remove('animated', animationName);
+            node.removeEventListener('animationend', handleAnimationEnd);
+            if (typeof callback === 'function') callback()
+        }
+        node.addEventListener('animationend', handleAnimationEnd)
+    }
+    function b2tClick(obj) {
+        scrollToY(0, 500, 'easeInOutQuint');
+        animateCSS(obj.children[0], 'fadeOutUp', function() {
+            animateCSS(obj.children[0], 'fadeInUp');
+        });
+    }
+</script>
+<div class="scroll-to-top-btn" onclick="b2tClick(this)" data-anim="false">
+    <i class="fa fa-arrow-up" style="margin-top: 12px;animation-duration: 250ms;"></i>
+</div>
 <!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
+<img src="/img/icon_wechat.png" width="0" height="0" alt=""/>
 <!-- Migrate from head to bottom, no longer block render and still work -->
+
+{% if page.id == "index" %}
+<link rel="stylesheet" href="/css/iDisqus.min.css" />
+<script src="/js/iDisqus.min.js"></script>
+
+<script>
+    "use strict";
+    let disq = new iDisqus('comment', {
+        forum: 'soptlog',
+        api: 'https://api.soptq.me/disqus/api',
+        site: 'https://soptq.me',
+        identifier: window.location.href.split('?')[0],
+        url: window.location.href.split('?')[0],
+        mode: 1,
+        timeout: 3000,
+        init: true,
+        emojiPreview: true
+    });
+    disq.count();
+</script>
+{% endif %}
+
+<script>
+    "use strict";
+    async function short_link() {
+        $("a").each(function () {
+            if ($(this)[0].getAttribute('rel') === 'ar') {
+                if ((navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/) == null
+                    || parseInt((navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/)[1], 10) < 12) {
+                    $(this)[0].parentNode.innerHTML = '<a aria-label="Zoom In" data-fancybox="gallery" href="' +
+                        $(this)[0].childNodes[1].getAttribute('data-original') + '">' +
+                        $(this)[0].innerHTML + '</a>'
+                }
+                return;
+            }
+            if (!!$(this)[0].href && $(this)[0].href.indexOf('javascript:') !== 0 &&
+                $(this)[0].origin !== location.origin) {
+                $(this)[0].href = "{{ site.baseurl }}/go/?target=" + btoa($(this)[0].href);
+            }
+        })
+    }
+    short_link();
+    async('{{ "/js/lazyload.min.js" | prepend: site.baseurl }}',function(){
+        $(".lazyload").lazyload({
+            effect : "fadeIn",
+            appear : function ($elements, elements_left, options) {
+                $elements.addClass("loading");
+            },
+            load: function ($elements, elements_left, options) {
+                $elements.removeClass("loading");
+                $elements.addClass("loaded");
+            }
+        });
+    });
+    {% if page.layout == "post" %}
+    setTimeout(function () {
+        document.getElementsByClassName('post-heading')[0].classList.remove("animated", "post-fadeInDown");
+        document.getElementsByClassName('side-progress')[0].classList.remove("animated", "content-fadeInUp");
+        document.getElementsByClassName('side-catalog')[0].classList.remove("animated", "content-fadeInUp");
+    }, 1000);
+    {% endif %}
+    clearInterval(nprogress_interval);
+    NProgress.done();
+</script>
 
 </body>
 

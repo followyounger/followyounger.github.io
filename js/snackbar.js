@@ -10,24 +10,21 @@ var createSnackbar = (function() {
   // Any snackbar that is already shown
   var previous = null;
   
-/*
-<div class="paper-snackbar">
-  <button class="action">Dismiss</button>
-  This is a longer message that won't fit on one line. It is, inevitably, quite a boring thing. Hopefully it is still useful.
-</div>
-*/
-  
   return function(config) {
     var message = config.message,
       actionText = config.actionText,
       action = config.action,
-      duration = config.duration;
+      duration = config.duration,
+      mode = config.mode;
 
     if (previous) {
       previous.dismiss();
     }
     var snackbar = document.createElement('div');
     snackbar.className = 'paper-snackbar';
+    if (mode === 'error') snackbar.classList.add('snackbar-error');
+    if (mode === 'warning') snackbar.classList.add('snackbar-warning');
+    if (mode === 'success') snackbar.classList.add('snackbar-suc');
     snackbar.dismiss = function() {
       this.style.opacity = 0;
     };
@@ -38,7 +35,8 @@ var createSnackbar = (function() {
         action = snackbar.dismiss.bind(snackbar);
       }
       var actionButton = document.createElement('button');
-      actionButton.className = 'action';
+      // actionButton.className = 'action';
+      actionButton.className = 'rkmd-btn btn-flat ripple-effect';
       actionButton.innerHTML = actionText;
       actionButton.addEventListener('click', action);
       snackbar.appendChild(actionButton);
@@ -58,8 +56,6 @@ var createSnackbar = (function() {
       }
     }.bind(snackbar));
 
-
-    
     previous = snackbar;
     document.body.appendChild(snackbar);
     // In order for the animations to trigger, I have to force the original style to be computed, and then change it.

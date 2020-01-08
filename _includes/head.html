@@ -5,8 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="{{ site.description }}">
     <meta name="keywords"  content="{{ site.keyword }}">
-    <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
-    
+    <meta name="theme-color" content="#ffffff">
+
+    {% if site.RSS %}
+    <link rel="alternate" href="{{ "/feed.xml" | prepend: site.baseurl }}" type="application/atom+xml">
+    {% endif %}
+    <!--预先解析 DNS-->
+    <link rel="preconnect" href="https://api.soptq.me">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    {% if page.layout == 'post' %}
+    <link rel="preconnect" href="https://github.githubassets.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    {% if page.aplayer %}
+    <link rel="preconnect" href="https://server.soptq.me">
+    {% endif %}
+    {% endif %}
+
+    <meta name="google-site-verification" content="IrJdsG-VXijtRy2Pf5ts2GnYJd7j-L4hHYpkG9shRAM" />
+
     <!-- Open Graph -->
     <meta property="og:title" content="{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}">
     {% case page.layout %}
@@ -22,44 +39,84 @@
     {% for tag in page.tags %}
     <meta property="article:tag" content="{{ tag }}">
     {% endfor %}
+    {% if page.header-img %}
+    <meta property="og:image" content="{{ site.url }}/{{ page.header-img }}">
+    {% else %}
+    <meta property="og:image" content="{{ site.url }}/img/icon/android-chrome-512x512.png?v=M4mbxvr6MJ">
+    {% endif %}
     {% else %}
     <meta property="og:type" content="website">
     <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    {% endcase %}
+    {% if page.id == 'about' %}
     <meta property="og:image" content="{{ site.url }}{{ site.sidebar-avatar }}">
+    {% else %}
+    <meta property="og:image" content="{{ site.url }}/img/icon/android-chrome-512x512.png?v=M4mbxvr6MJ">
+    {% endif %}
+    {% endcase %}
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="{{ site.SEOTitle }}">
-    
+
     <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
 
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
+    <!-- icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/img/icon/apple-touch-icon.png?v=M4mbxvr6MJ">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/img/icon/favicon-32x32.png?v=M4mbxvr6MJ">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ site.baseurl }}/img/icon/android-chrome-192x192.png?v=M4mbxvr6MJ">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/img/icon/favicon-16x16.png?v=M4mbxvr6MJ">
+    <link rel="manifest" href="{{ site.baseurl }}/img/icon/site.webmanifest?v=M4mbxvr6MJ">
+    <link rel="mask-icon" href="{{ site.baseurl }}/img/icon/safari-pinned-tab.svg?v=M4mbxvr6MJ" color="#33b384">
+    <link rel="shortcut icon" href="{{ site.baseurl }}/img/icon/favicon.ico?v=M4mbxvr6MJ">
+    <meta name="apple-mobile-web-app-title" content="{{ site.title }}">
+    <meta name="application-name" content="{{ site.title }}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="{{ site.baseurl }}/img/icon/mstile-144x144.png?v=M4mbxvr6MJ">
+    <meta name="msapplication-config" content="{{ site.baseurl }}/img/icon/browserconfig.xml?v=M4mbxvr6MJ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico">
-    
-    <!-- Canonical URL -->
+    <!-- safari pwa splash screen -->
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-750x1294.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1242x2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1242x2688.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1136x640.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1294x750.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-2208x1242.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-2436x1125.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-1792x828.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-2688x1242.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-2048x1536.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-2224x1668.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="{{ site.baseurl }}/img/splash/launch-2732x2048.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)">
+
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="status-theme" name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-
-    <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | prepend: site.baseurl }}">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ "/css/hux-blog.min.css" | prepend: site.baseurl }}">
-
-    <!-- Custom Fonts -->
-    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- Hux change font-awesome CDN to qiniu -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ga & ba script hoook -->
+    <link id="daily-theme" rel="stylesheet" href="{{ "/css/daily-mode.min.css" | prepend: site.baseurl }}" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" data-original-media="(prefers-color-scheme: no-preference), (prefers-color-scheme: light)">
+    <link id="dark-theme" rel="stylesheet" href="{{ "/css/dark-mode.min.css" | prepend: site.baseurl }}" media="(prefers-color-scheme: dark)" data-original-media="(prefers-color-scheme: dark)">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="none" onload="if(media!='all')media='all'">
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <script></script>
+    {% if False %}
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css'/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.css"/>
+    {% endif %}
+    <style>
+        #nprogress{pointer-events:none}#nprogress .bar{background:#26a69a;position:fixed;z-index:1031;top:0;left:0;width:100%;height:5px}#nprogress .peg{display:block;position:absolute;right:0;width:100px;height:100%;box-shadow:0 0 10px #26a69a,0 0 5px #26a69a;opacity:1;-webkit-transform:rotate(3deg) translate(0,-4px);-ms-transform:rotate(3deg) translate(0,-4px);transform:rotate(3deg) translate(0,-4px)}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.fadeIn{-webkit-animation-name:fadeIn;animation-name:fadeIn}@-webkit-keyframes fadeInDown{from{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}@keyframes fadeInDown{from{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}.fadeInDown{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}@-webkit-keyframes fadeOutUp{from{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}}@keyframes fadeOutUp{from{opacity:1}to{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}}.fadeOutUp{-webkit-animation-name:fadeOutUp;animation-name:fadeOutUp}@-webkit-keyframes fadeInUp{from{opacity:0;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}@keyframes fadeInUp{from{opacity:0;-webkit-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}.fadeInUp{-webkit-animation-name:fadeInUp;animation-name:fadeInUp}@-webkit-keyframes content-fadeInUp{from{opacity:0;-webkit-transform:translate3d(0,25px,0);transform:translate3d(0,25px,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}@keyframes content-fadeInUp{from{opacity:0;-webkit-transform:translate3d(0,25px,0);transform:translate3d(0,25px,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}.content-fadeInUp{-webkit-animation-name:content-fadeInUp;animation-name:content-fadeInUp}@-webkit-keyframes post-fadeInDown{from{opacity:0;-webkit-transform:translate3d(0,-25px,0);transform:translate3d(0,-25px,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}@keyframes post-fadeInDown{from{opacity:0;-webkit-transform:translate3d(0,-25px,0);transform:translate3d(0,-25px,0)}to{opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}}.post-fadeInDown{-webkit-animation-name:post-fadeInDown;animation-name:post-fadeInDown}.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}.animated.delay-1s{-webkit-animation-delay:1s;animation-delay:1s}
+    </style>
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" as="script">
+    {% if page.layout == 'post' %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" media="none" onload="if(media!='all')media='all'">
+    {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@2.0.0/instantpage.min.js" type="module" defer></script>
 </head>

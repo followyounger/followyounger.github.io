@@ -1,0 +1,67 @@
+body {
+    background-color: #18191A;
+}
+
+.navbar-custom.is-fixed{
+    background-color: rgba(24,25,26,0.9);
+    border-color: #18191A;
+}
+
+.navbar-custom.is-fixed .navbar-brand{
+    color: #d0cec8;
+}
+
+.navbar-custom.is-fixed .nav li a{
+    color: #d0cec8;
+}
+
+.navbar-custom .navbar-toggle:active {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.navbar-custom .navbar-toggle .icon-bar {
+    background-color: white;
+}
+.navbar-custom .navbar-brand {
+    color: white;
+}
+.navbar-custom .nav li a {
+    color: white;
+}
+
+@media only screen and (max-width: 767px){
+    .navbar-default .navbar-collapse{
+        background: #18191A
+    }
+}
+
+hr{
+    border-color: #363636;
+}
+
+header {
+    border-color: #363636;
+}
+
+.cbp_tmtimeline>li .cbp_tmlabel{
+    background: #363636;
+    color: #D0CEC8;
+    border-color: #1C1C1C;
+}
+
+.cbp_tmlabel img{
+    border-color: #1C1C1C;
+}
+
+.cbp_tmlabel ul li.skill{
+    border-color: #1C1C1C;
+}
+
+.cbp_tmlabel ul li.skill span.link{
+    background: #2d2d2d;
+    border-color: #1c1c1c;
+}
+
+.cbp_tmlabel ul li.skill span.link:hover,
+.cbp_tmlabel ul li.skill span.link:active{
+    background: #3B3B3B;
+}

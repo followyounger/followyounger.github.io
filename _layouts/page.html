@@ -4,10 +4,8 @@ layout: default
 
 <!-- Page Header -->
 {% include intro-header.html type='page' %}
-
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
+{% if page.id == "post" %}<div class="container">{% else %}<div class="container animated content-fadeInUp">{% endif %}
+    <div class="row">
         {% if site.sidebar == false %}
 <!-- NO SIDEBAR -->
     <!-- PostList Container -->
@@ -30,15 +28,15 @@ layout: default
 
 <!-- USE SIDEBAR -->
     <!-- PostList Container -->
-    		<div class="
+            <div class="
                 col-lg-8 col-lg-offset-1
                 col-md-8 col-md-offset-1
                 col-sm-12
                 col-xs-12
                 postlist-container
             ">
-    			{{ content }}
-    		</div>
+                {{ content }}
+            </div>
     <!-- Sidebar Container -->
             <div class="
                 col-lg-3 col-lg-offset-0
@@ -47,6 +45,12 @@ layout: default
                 col-xs-12
                 sidebar-container
             ">
+                <!-- General Data-->
+                {% include general-data.html %}
+
+                <!-- Timer -->
+                {% include timer.html %}
+
                 <!-- Featured Tags -->
                 {% include featured-tags.html %}
 
@@ -55,9 +59,14 @@ layout: default
 
                 <!-- Friends Blog -->
                 {% include friends.html %}
-    		</div>
+
+                <!-- Heatmap -->
+                {% if site.enable_heatmap %}
+                    {% include heatmap.html %}
+                {% endif %}
+            </div>
         {% endif %}
-	</div>
+    </div>
 </div>
 
 {% if site.page-mathjax %}
@@ -78,7 +87,6 @@ layout: default
     }
   });
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+<script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js"></script>
+<script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/config/TeX-AMS-MML_HTMLorMML.min.js"></script>
 {% endif %}
